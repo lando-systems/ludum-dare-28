@@ -87,7 +87,7 @@ public class GamePlayScreen extends GameScreen
         
 
         //Find type
-        switch(mapString.charAt(((y*width)+x)*2+1))
+        switch(mapString.charAt(((y*width)+x)*2))
         {
           case '-':
             break;
