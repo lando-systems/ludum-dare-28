@@ -2,19 +2,22 @@ package com.gamedev.ld28.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.gamedev.ld28.Assets;
+import com.gamedev.ld28.Config;
 import com.gamedev.ld28.Skeleton;
+import com.gamedev.ld28.Utils;
+import com.gamedev.ld28.Utils.EStringJustify;
 
 public class TitleScreen extends GameScreen {
 
 	private OrthographicCamera camera;
-	private SpriteBatch batch;
-	private Texture texture;
 	private Sprite sprite;
 
 	public TitleScreen(Skeleton game) {
@@ -23,14 +26,10 @@ public class TitleScreen extends GameScreen {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 
-		camera = new OrthographicCamera(1, h/w);
-		batch = new SpriteBatch();
+		camera = new OrthographicCamera(Config.screenWidth, Config.screenHeight);
 
-		texture = new Texture(Gdx.files.internal("data/libgdx.png"));
-		texture .setFilter(TextureFilter.Linear, TextureFilter.Linear);
-
-		sprite = new Sprite(texture);
-		sprite.setSize(1.0f, (h / w) * sprite.getHeight() / sprite.getWidth());
+		sprite = new Sprite(Assets.titleBackground);
+		sprite.setSize(Config.screenWidth, Config.screenHeight);
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
 	}
@@ -44,7 +43,7 @@ public class TitleScreen extends GameScreen {
 		}
 
 		if (Gdx.input.justTouched()) {
-//			game.setScreen(game.screens.get("SomeOtherScreen"));
+			//game.setScreen(game.screens.get("SomeOtherScreen"));
 		}
 
 		camera.update();
@@ -57,16 +56,16 @@ public class TitleScreen extends GameScreen {
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1.f);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		sprite.draw(batch);
-		batch.end();
+		Assets.batch.setProjectionMatrix(camera.combined);
+		Assets.batch.begin();
+		sprite.draw(Assets.batch);
+		Assets.batch.end();
+		
+		Utils.drawText(Config.title, 20, 300, 48, 48, Color.RED, EStringJustify.CENTER);
 	}
 
 	@Override
 	public void dispose() {
-		batch.dispose();
-		texture.dispose();
 	}
 
 	@Override

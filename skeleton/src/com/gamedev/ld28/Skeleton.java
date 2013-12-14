@@ -19,8 +19,10 @@ public class Skeleton extends Game {
 
 	@Override
 	public void create() {
+		Assets.load();
 		screens.put("Title", new TitleScreen(this));
-
+		//screens.put("Game", new GameScreen(this));
+		
 		setScreen(screens.get("Title"));
 	}
 
