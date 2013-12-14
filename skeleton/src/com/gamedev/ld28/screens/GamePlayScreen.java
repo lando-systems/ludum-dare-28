@@ -134,6 +134,8 @@ public class GamePlayScreen extends GameScreen
     }
 
     camera.update();
+    
+    Utils.updateInput();
   }
 
   @Override

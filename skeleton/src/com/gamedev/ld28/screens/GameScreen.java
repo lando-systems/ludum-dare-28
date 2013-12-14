@@ -15,7 +15,7 @@ public abstract class GameScreen implements Screen {
 	public GameScreen(Skeleton game) { this.game = game; }
 
 	public void update(float delta) {
-		Utils.updateInput();
+		
 		tweenMgr.update(delta);
 	}
 
