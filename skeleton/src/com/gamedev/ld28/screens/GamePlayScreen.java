@@ -12,12 +12,10 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.gamedev.ld28.Assets;
-import com.gamedev.ld28.Config;
 import com.gamedev.ld28.Skeleton;
-import com.gamedev.ld28.Utils;
-import com.gamedev.ld28.Utils.EStringJustify;
 
-import com.gamedev.ld28.entities.Entity;
+import com.gamedev.ld28.utils.*;
+import com.gamedev.ld28.entities.*;
 
 public class GamePlayScreen extends GameScreen
 {
@@ -34,16 +32,16 @@ public class GamePlayScreen extends GameScreen
   //'wd' - you/wizard
   //'*d' - direction: n(orth), e(ast) s(outh) w(est)
   protected String mapData =  //Note- make sure length of string/2 is a perfect square
-    "- - - - - - - - - - "+
-    "- znx x - - - - - x "+
-    "- - x - zs- - - - x "+
-    "- - - - - - - ze- - "+
-    "- - - - - zw- - - - "+
-    "- x zs- x - - - - - "+
-    "- x x x x - x x x - "+
-    "- - - - - - x x x - "+
-    "- - - wn- - x x x - "+
-    "- - - - - - - - - - ";
+    "x x x x x x x x x x "+
+    "x znx x - - - - - x "+
+    "x - x - zs- - - - x "+
+    "x - - - - - - ze- x "+
+    "x - - - - zw- - - x "+
+    "x x zs- x - - - - x "+
+    "x x x x x - x x x x "+
+    "x - - - - - x x x x "+
+    "x - - wn- - x x x x "+
+    "x x x x x x x x x x ";
 
   public GamePlayScreen(Skeleton game)
   {
@@ -68,20 +66,20 @@ public class GamePlayScreen extends GameScreen
       for(int j = 0; j < width; j++)
       {
         //Find direction
-        //int dir;
+        int dir;
         switch(mapString.charAt((i*width)+j)*2+1)
         {
           case 'n':
-            //dir = north;
+            dir = Constants.NORTH;
             break;
           case 's':
-            //dir = south;
+            dir = Constants.SOUTH;
             break;
           case 'e':
-            //dir = east;
+            dir = Constants.EAST;
             break;
           case 'w':
-            //dir = west;
+            dir = Constants.WEST;
             break;
           default:
             break;
@@ -93,13 +91,13 @@ public class GamePlayScreen extends GameScreen
           case '-':
             break;
           case 'x':
-            //entities.add(new Stone(j,i));
+            entities.add(new Stone(j,i));
             break;
           case 'z':
-            //entities.add(new Zombie(j,i,dir));
+            entities.add(new Zombie(j,i,dir));
             break;
           case 'w':
-            //entities.add(new Wizard(j,i,dir));
+            entities.add(new Wizard(j,i,dir));
             break;
           default:
             break;
@@ -137,7 +135,7 @@ public class GamePlayScreen extends GameScreen
       //sprite.draw(Assets.batch);
       Assets.batch.end();
 
-      Utils.drawText(Config.title, 20, 300, 48, 48, Color.RED, EStringJustify.CENTER);
+      Utils.drawText(Config.title, 20, 300, 48, 48, Color.RED, Utils.EStringJustify.CENTER);
     }
 
 

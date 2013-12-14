@@ -1,4 +1,4 @@
-package com.gamedev.ld28;
+package com.gamedev.ld28.utils;
 
 import java.util.Random;
 
