@@ -160,5 +160,31 @@ public class GamePlayScreen extends GameScreen
 
   @Override
     public void resize(int width, int height) {}
+  
+  
+  
+	public void validateMap() {
+		
+		int i, j;
+		Entity eA, eB;
+		boolean isValid = false;
+		validityLoop: while (!isValid) {
+			isValid = true;
+			for (i = 0; i < this.entities.size(); i++) {
+				eA = this.entities.get(i);
+				for (j = i + 1; j < this.entities.size(); j++) {
+					eB = this.entities.get(j);
+					if (eA.getX() == eB.getX() &&
+						eA.getY() == eB.getY()) {
+						eA.revert();
+						eB.revert();
+						isValid = false;
+						continue validityLoop;
+					}
+				}
+			}
+		}
+			
+	}
 
 }
