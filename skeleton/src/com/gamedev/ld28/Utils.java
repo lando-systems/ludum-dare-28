@@ -1,6 +1,7 @@
 package com.gamedev.ld28;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -12,6 +13,8 @@ public class Utils {
 	public static enum EStringJustify { LEFT, CENTER, RIGHT };
 	private static boolean[] lastInput = new boolean[256];
 	private static int pixelsBetweenCharacters = 2; // spacing between characters (pixels)
+	private static Music currentMusic;
+	
 	
 	public static void updateInput(){
 		for (int i =0; i < 256; i++){
@@ -111,4 +114,21 @@ public class Utils {
 	public static boolean probability(int prob) {
 		return (Config.rand.nextInt(100) < prob);
 	}	
+	
+	public static void PlayMusic(Music music)
+	{
+		if (currentMusic != null)
+		{
+			currentMusic.stop();
+		}
+		
+		currentMusic = music;
+		
+		if (music != null)
+		{
+			currentMusic.setLooping(true);
+			currentMusic.play();
+			currentMusic.setVolume(.3f);
+		}
+	}
 }

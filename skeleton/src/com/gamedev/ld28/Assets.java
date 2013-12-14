@@ -3,6 +3,7 @@ package com.gamedev.ld28;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,6 +23,8 @@ public class Assets {
 	public static TextureRegion[][] digits;
 	public static TextureRegion[][] symbols;
 	
+	public static Music titleMusic;
+	
 	
 
 	public static void load() {
@@ -39,6 +42,8 @@ public class Assets {
 		letters = splitAndGet(spritesheet, 8, 8, 0, 30, 26, 1);
 		digits  = splitAndGet(spritesheet, 8, 8, 0, 31, 10, 1);
 		symbols = splitAndGet(spritesheet, 8, 8, 10, 31, 18, 1);
+		
+		titleMusic = Gdx.audio.newMusic(Gdx.files.internal("data/audio/day_of_chaos.mp3"));
 	}
 
 	public static void dispose() {

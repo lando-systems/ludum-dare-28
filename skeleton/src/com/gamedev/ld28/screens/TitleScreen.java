@@ -27,6 +27,8 @@ public class TitleScreen extends GameScreen {
 		sprite.setSize(Config.screenWidth, Config.screenHeight);
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
+		//TODO: uncomment me when we want music again
+		//Utils.PlayMusic(Assets.titleMusic);
 	}
 
 	@Override
