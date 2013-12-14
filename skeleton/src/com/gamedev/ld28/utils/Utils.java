@@ -2,6 +2,7 @@ package com.gamedev.ld28.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
@@ -112,4 +113,14 @@ public class Utils {
 	public static boolean probability(int prob) {
 		return (Config.rand.nextInt(100) < prob);
 	}	
+	
+	
+	private static int gameBoardLeft =50;
+	private static int gameBoardBottom = 40;
+	
+	public static void setScreenPosition(Sprite sprite, int posX, int posY, int width, int height){
+		int x = gameBoardLeft -Config.screenHalfWidth + (posX * width);
+		int y = gameBoardBottom -Config.screenHalfHeight + (posY * height);
+		sprite.setBounds(x, y, width, height);
+	}
 }

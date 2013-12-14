@@ -7,10 +7,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.gamedev.ld28.Assets;
 import com.gamedev.ld28.Skeleton;
 
@@ -20,7 +17,7 @@ import com.gamedev.ld28.entities.*;
 public class GamePlayScreen extends GameScreen
 {
   private OrthographicCamera camera;
-  private Sprite sprite;
+  private Sprite gameBoard;
 
   protected ArrayList<Entity> entities;
 
@@ -46,7 +43,7 @@ public class GamePlayScreen extends GameScreen
   {
     super(game);
     camera = new OrthographicCamera(Config.screenWidth, Config.screenHeight);
-
+    gameBoard = new Sprite(Assets.gameBoard);
     //sprite = new Sprite(Assets.titleBackground);
     //sprite.setSize(Config.screenWidth, Config.screenHeight);
     //sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
@@ -149,10 +146,13 @@ public class GamePlayScreen extends GameScreen
 
       Assets.batch.setProjectionMatrix(camera.combined);
       Assets.batch.begin();
-      //sprite.draw(Assets.batch);
+      Utils.setScreenPosition(gameBoard, 0, 0, Assets.gameBoard.getWidth(), Assets.gameBoard.getHeight());
+      gameBoard.draw(Assets.batch);
+      for(Entity entity: entities){
+    	  entity.render();
+      }
       Assets.batch.end();
 
-      Utils.drawText(Config.title, 20, 300, 48, 48, Color.RED, Utils.EStringJustify.CENTER);
     }
 
 

@@ -1,6 +1,9 @@
 package com.gamedev.ld28.entities;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.gamedev.ld28.Assets;
 import com.gamedev.ld28.utils.Constants;
+import com.gamedev.ld28.utils.Utils;
 
 public class Entity {
 	
@@ -10,6 +13,7 @@ public class Entity {
 	protected int oldX;
 	protected int oldY;
 	protected int oldDir;
+	protected Sprite sprite;
 	
 	public static enum ACTIONS {
 		FORWARD, BACK, TURN_CCW, TURN_CW
@@ -19,6 +23,7 @@ public class Entity {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
+		sprite = new Sprite(Assets.zombie);
 	}
 	
 	public int getX() {
@@ -74,6 +79,12 @@ public class Entity {
 		this.x = this.oldX;
 		this.y = this.oldY;
 		this.dir = this.oldDir;
+	}
+	
+	public void render(){
+		Utils.setScreenPosition(sprite, x, y, 64, 64);
+		
+		sprite.draw(Assets.batch);
 	}
 	
 }
