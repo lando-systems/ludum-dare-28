@@ -7,10 +7,10 @@ import com.gamedev.ld28.Skeleton;
 public class Main {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-		cfg.title = "One Controller";
-		cfg.useGL20 = false;
-		cfg.width = 640;
-		cfg.height = 480;
+		cfg.title = Config.title;
+		cfg.useGL20 = Config.useGL20;
+		cfg.width = Config.screenWidth;
+		cfg.height = Config.screenHeight;
 		
 		new LwjglApplication(new Skeleton(), cfg);
 	}
