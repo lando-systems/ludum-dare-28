@@ -7,10 +7,9 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.gamedev.ld28.Assets;
-import com.gamedev.ld28.Config;
+import com.gamedev.ld28.utils.*;
 import com.gamedev.ld28.Skeleton;
-import com.gamedev.ld28.Utils;
-import com.gamedev.ld28.Utils.EStringJustify;
+
 
 public class TitleScreen extends GameScreen {
 
@@ -60,9 +59,9 @@ public class TitleScreen extends GameScreen {
 		sprite.draw(Assets.batch);
 		Assets.batch.end();
 		
-		Utils.drawText(Config.title, 0, 300, 48, 48, Color.RED, EStringJustify.CENTER);
+		Utils.drawText(Config.title, 0, 300, 48, 48, Color.RED, Utils.EStringJustify.CENTER);
 		if (flashTimer < 1.0f){
-			Utils.drawText("Click to Start", 0, 0, 48, 48, Color.RED, EStringJustify.CENTER);
+			Utils.drawText("Click to Start", 0, 0, 48, 48, Color.RED, Utils.EStringJustify.CENTER);
 		}
 	}
 
