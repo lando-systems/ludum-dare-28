@@ -62,12 +62,12 @@ public class GamePlayScreen extends GameScreen
     int height = width = (int)Math.sqrt(mapString.length()/2);
     int dir = 0;
 
-    for(int i = 0; i < height; i++)
+    for(int y = 0; y < height; y++)
     {
-      for(int j = 0; j < width; j++)
+      for(int x = 0; x < width; x++)
       {
         //Find direction
-        switch(mapString.charAt((i*width)+j)*2+1)
+        switch(mapString.charAt(((y*width)+x)*2+1))
         {
           case 'n':
             dir = Constants.NORTH;
@@ -84,19 +84,21 @@ public class GamePlayScreen extends GameScreen
           default:
             break;
         }
+        
+
         //Find type
-        switch(mapString.charAt((i*width)+j)*2)
+        switch(mapString.charAt(((y*width)+x)*2+1))
         {
           case '-':
             break;
           case 'x':
-            entities.add(new Stone(j,i,dir));
+            entities.add(new Stone(x,y,dir));
             break;
           case 'z':
-            entities.add(new Zombie(j,i,dir));
+            entities.add(new Zombie(x,y,dir));
             break;
           case 'w':
-            //entities.add(new Wizard(j,i,dir));
+            entities.add(new Wizard(x,y,dir));
             break;
           default:
             break;
