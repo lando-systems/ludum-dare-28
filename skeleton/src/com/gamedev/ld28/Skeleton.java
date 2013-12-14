@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.gamedev.ld28.screens.GamePlayScreen;
 import com.gamedev.ld28.screens.GameScreen;
 import com.gamedev.ld28.screens.TitleScreen;
 
@@ -21,7 +22,7 @@ public class Skeleton extends Game {
 	public void create() {
 		Assets.load();
 		screens.put("Title", new TitleScreen(this));
-		//screens.put("Game", new GameScreen(this));
+		screens.put("Game", new GamePlayScreen(this));
 		
 		setScreen(screens.get("Title"));
 	}

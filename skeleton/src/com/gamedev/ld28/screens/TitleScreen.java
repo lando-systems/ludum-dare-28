@@ -38,7 +38,7 @@ public class TitleScreen extends GameScreen {
 		}
 
 		if (Gdx.input.justTouched()) {
-			//game.setScreen(game.screens.get("SomeOtherScreen"));
+			game.setScreen(game.screens.get("Game"));
 		}
 
 		camera.update();

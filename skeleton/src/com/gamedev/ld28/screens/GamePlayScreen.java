@@ -134,7 +134,7 @@ public class GamePlayScreen extends GameScreen
 
       Assets.batch.setProjectionMatrix(camera.combined);
       Assets.batch.begin();
-      sprite.draw(Assets.batch);
+      //sprite.draw(Assets.batch);
       Assets.batch.end();
 
       Utils.drawText(Config.title, 20, 300, 48, 48, Color.RED, EStringJustify.CENTER);
