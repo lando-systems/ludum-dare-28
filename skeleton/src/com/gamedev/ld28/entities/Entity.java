@@ -21,7 +21,15 @@ public class Entity {
 		this.dir = dir;
 	}
 	
-	public int getX
+	public int getX() {
+		return this.x;
+	}
+	public int getY() {
+		return this.y;
+	}
+	public int getDir() {
+		return this.dir;
+	}
 	
 	
 	public void takeAction(Entity.ACTIONS action) {
