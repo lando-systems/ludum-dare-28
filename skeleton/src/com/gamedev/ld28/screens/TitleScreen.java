@@ -5,10 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.gamedev.ld28.Assets;
 import com.gamedev.ld28.Config;
 import com.gamedev.ld28.Skeleton;
@@ -19,12 +16,10 @@ public class TitleScreen extends GameScreen {
 
 	private OrthographicCamera camera;
 	private Sprite sprite;
+	private float flashTimer = 0;
 
 	public TitleScreen(Skeleton game) {
 		super(game);
-
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
 
 		camera = new OrthographicCamera(Config.screenWidth, Config.screenHeight);
 
@@ -47,6 +42,8 @@ public class TitleScreen extends GameScreen {
 		}
 
 		camera.update();
+		flashTimer += delta;
+		if (flashTimer > 2.0f) flashTimer -=2.0f;
 	}
 
 	@Override
@@ -61,7 +58,10 @@ public class TitleScreen extends GameScreen {
 		sprite.draw(Assets.batch);
 		Assets.batch.end();
 		
-		Utils.drawText(Config.title, 20, 300, 48, 48, Color.RED, EStringJustify.CENTER);
+		Utils.drawText(Config.title, 0, 300, 48, 48, Color.RED, EStringJustify.CENTER);
+		if (flashTimer < 1.0f){
+			Utils.drawText("Click to Start", 0, 0, 48, 48, Color.RED, EStringJustify.CENTER);
+		}
 	}
 
 	@Override
