@@ -4,7 +4,7 @@ import aurelienribon.tweenengine.TweenManager;
 
 import com.badlogic.gdx.Screen;
 import com.gamedev.ld28.Skeleton;
-import com.gamedev.ld28.Utils;
+import com.gamedev.ld28.utils.Utils;
 
 public abstract class GameScreen implements Screen {
 

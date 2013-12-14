@@ -91,13 +91,13 @@ public class GamePlayScreen extends GameScreen
           case '-':
             break;
           case 'x':
-            entities.add(new Stone(j,i));
+            //entities.add(new Stone(j,i));
             break;
           case 'z':
-            entities.add(new Zombie(j,i,dir));
+            //entities.add(new Zombie(j,i,dir));
             break;
           case 'w':
-            entities.add(new Wizard(j,i,dir));
+            //entities.add(new Wizard(j,i,dir));
             break;
           default:
             break;

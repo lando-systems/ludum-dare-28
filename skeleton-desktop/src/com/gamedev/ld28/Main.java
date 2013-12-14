@@ -3,6 +3,7 @@ package com.gamedev.ld28;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.gamedev.ld28.Skeleton;
+import com.gamedev.ld28.utils.Config;
 
 public class Main {
 	public static void main(String[] args) {
