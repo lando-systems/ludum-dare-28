@@ -17,6 +17,9 @@ public class Assets {
 
 	public static Texture spritesheet;
 	public static Texture titleBackground;
+	public static Texture gameBoard;
+	public static Texture zombie;
+	public static Texture stone;
 
 
 	public static TextureRegion[][] letters;
@@ -38,6 +41,14 @@ public class Assets {
 		titleBackground = new Texture(Gdx.files.internal("data/titlescreen.png"));
 		titleBackground.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
+		zombie = new Texture(Gdx.files.internal("data/zombie.png"));
+		zombie.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		stone = new Texture(Gdx.files.internal("data/stone.png"));
+		stone.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		gameBoard = new Texture(Gdx.files.internal("data/gamebackground.png"));
+		gameBoard.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		letters = splitAndGet(spritesheet, 8, 8, 0, 30, 26, 1);
 		digits  = splitAndGet(spritesheet, 8, 8, 0, 31, 10, 1);
