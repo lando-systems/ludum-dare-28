@@ -114,17 +114,17 @@ public class GamePlayScreen extends GameScreen
       Gdx.app.exit();
     }
 
-    int direction = -1;
-    if(Utils.isKeyJustPressed(Keys.W)) direction = Constants.NORTH;
-    if(Utils.isKeyJustPressed(Keys.A)) direction = Constants.WEST;
-    if(Utils.isKeyJustPressed(Keys.S)) direction = Constants.SOUTH;
-    if(Utils.isKeyJustPressed(Keys.D)) direction = Constants.EAST;
+    Entity.ACTIONS action = null;
+    if(Utils.isKeyJustPressed(Keys.W)) action = Entity.ACTIONS.FORWARD;
+    if(Utils.isKeyJustPressed(Keys.A)) action = Entity.ACTIONS.TURN_CCW;
+    if(Utils.isKeyJustPressed(Keys.S)) action = Entity.ACTIONS.BACK;
+    if(Utils.isKeyJustPressed(Keys.D)) action = Entity.ACTIONS.TURN_CW;
 
-    if(direction != -1)
+    if(action != null)
     {
-      for(int i = 0; i < entities.size(); i++)
+      for(Entity entity : entities)
       {
-        //entities.objectAtIndexk
+    	  entity.takeAction(action);
       }
     }
 
