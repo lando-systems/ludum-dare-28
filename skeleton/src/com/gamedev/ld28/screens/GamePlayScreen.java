@@ -53,6 +53,7 @@ public class GamePlayScreen extends GameScreen
     //sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
 
     entities = new ArrayList<Entity>();
+    this.parseMapDataIntoEntities(mapData);
   }
 
   private void parseMapDataIntoEntities(String mapString)
