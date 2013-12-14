@@ -22,7 +22,6 @@ public class GamePlayScreen extends GameScreen
   private OrthographicCamera camera;
   private Sprite sprite;
 
-  protected Skeleton game;
   protected ArrayList<Entity> entities;
 
   //Sample data- in future we'll read in from file
@@ -60,13 +59,13 @@ public class GamePlayScreen extends GameScreen
   {
     int width;
     int height = width = (int)Math.sqrt(mapString.length()/2);
+    int dir = 0;
 
     for(int i = 0; i < height; i++)
     {
       for(int j = 0; j < width; j++)
       {
         //Find direction
-        int dir;
         switch(mapString.charAt((i*width)+j)*2+1)
         {
           case 'n':
@@ -84,17 +83,16 @@ public class GamePlayScreen extends GameScreen
           default:
             break;
         }
-
         //Find type
         switch(mapString.charAt((i*width)+j)*2)
         {
           case '-':
             break;
           case 'x':
-            //entities.add(new Stone(j,i));
+            entities.add(new Stone(j,i,dir));
             break;
           case 'z':
-            //entities.add(new Zombie(j,i,dir));
+            entities.add(new Zombie(j,i,dir));
             break;
           case 'w':
             //entities.add(new Wizard(j,i,dir));
@@ -111,9 +109,25 @@ public class GamePlayScreen extends GameScreen
   {
     super.update(delta);
 
-    if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+    if(Gdx.input.isKeyPressed(Keys.ESCAPE))
+    {
       Gdx.app.exit();
     }
+
+    int direction = -1;
+    if(Utils.isKeyJustPressed(Keys.W)) direction = Constants.NORTH;
+    if(Utils.isKeyJustPressed(Keys.A)) direction = Constants.WEST;
+    if(Utils.isKeyJustPressed(Keys.S)) direction = Constants.SOUTH;
+    if(Utils.isKeyJustPressed(Keys.D)) direction = Constants.EAST;
+
+    if(direction != -1)
+    {
+      for(int i = 0; i < entities.size(); i++)
+      {
+        //entities.objectAtIndexk
+      }
+    }
+
 
     if (Gdx.input.justTouched()) {
       //game.setScreen(game.screens.get("SomeOtherScreen"));
