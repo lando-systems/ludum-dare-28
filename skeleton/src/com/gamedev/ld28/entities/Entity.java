@@ -70,4 +70,10 @@ public class Entity {
 		}
 	}
 	
+	public void revert() {
+		this.x = this.oldX;
+		this.y = this.oldY;
+		this.dir = this.oldDir;
+	}
+	
 }
