@@ -21,6 +21,7 @@ public class Entity {
 		this.dir = dir;
 	}
 	
+	public int getX
 	
 	
 	public void takeAction(Entity.ACTIONS action) {
@@ -31,6 +32,7 @@ public class Entity {
 	}
 	
 	protected void standardMove(Entity.ACTIONS action) {
+		
 		int positionChange = 1;
 		
 		switch (action) {
