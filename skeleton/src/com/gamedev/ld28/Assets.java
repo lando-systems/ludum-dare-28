@@ -32,7 +32,7 @@ public class Assets {
 		spritesheet  = new Texture(Gdx.files.internal("data/spritesheet.png"));
 		spritesheet.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
-		titleBackground = new Texture(Gdx.files.internal("data/libgdx.png"));
+		titleBackground = new Texture(Gdx.files.internal("data/titlescreen.png"));
 		titleBackground.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
 		
