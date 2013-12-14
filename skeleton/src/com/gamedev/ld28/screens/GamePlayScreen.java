@@ -107,6 +107,7 @@ public class GamePlayScreen extends GameScreen
   @Override
   public void update(float delta)
   {
+	  
     super.update(delta);
 
     if(Gdx.input.isKeyPressed(Keys.ESCAPE))
@@ -126,6 +127,7 @@ public class GamePlayScreen extends GameScreen
       {
     	  entity.takeAction(action);
       }
+      this.validateMap();
     }
 
 
