@@ -4,6 +4,7 @@ import aurelienribon.tweenengine.TweenManager;
 
 import com.badlogic.gdx.Screen;
 import com.gamedev.ld28.Skeleton;
+import com.gamedev.ld28.Utils;
 
 public abstract class GameScreen implements Screen {
 
@@ -14,6 +15,7 @@ public abstract class GameScreen implements Screen {
 	public GameScreen(Skeleton game) { this.game = game; }
 
 	public void update(float delta) {
+		Utils.updateInput();
 		tweenMgr.update(delta);
 	}
 
