@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.Color;
 import com.gamedev.ld28.utils.*;
 import com.gamedev.ld28.entities.*;
+import com.gamedev.ld28.entities.Entity.ACTIONS;
 
 public class Level {
 	private String helpText = "WASD move you and zombies. Escape will reset the level ";
@@ -230,6 +231,9 @@ public class Level {
 				case Constants.DOOR:
 					entities.add(new Door(this, x, yPos, arg));
 					break;
+				case 'r':
+					entities.add(new Rotater(this, x, yPos));
+					break;
 				case 'q':
 					exit = new Exit(this, x, yPos);
 					entities.add(exit);
@@ -347,6 +351,10 @@ public class Level {
 							((Teleporter) eA).teleport(eB);
 							eB.conflictNoted = true;
 						}
+					}
+					if (eA instanceof Rotater && (eB.getX() != eB.getOldX() || eB.getY() != eB.getOldY())) {
+						//TODO: add sounds here?
+						eB.takeAction(ACTIONS.TURN_CW);
 					}
 					if (eA instanceof Exit && eB instanceof Wizard) {
 						currentLevel = Math.min(currentLevel + 1,
