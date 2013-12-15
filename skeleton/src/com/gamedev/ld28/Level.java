@@ -230,15 +230,15 @@ public class Level {
 //		 mapData[0] =
 //				 "x x x x x x x x x x x x x x "+
 //				 "x - - - - - - - - - - - - x "+
-//				 "x - - sa- - - - - - - - - x "+
-//				 "x - - zn- - - wn- - - - - x "+
+//				 "x - - - - - - - - - zesb- x "+
+//				 "x - - - x - x wn- - - - - x "+
+//				 "x - - x x dax x - - - - - x "+
+//				 "x - - - dasadbzw- - - - - x "+
+//				 "x - - x x dax x - - - - - x "+
+//				 "x - - - x - x - - - - - - x "+
 //				 "x - - - - - - - - - - - - x "+
-//				 "x - - - - - - - - - - - - x "+
-//				 "x - - da- da- - - - - - - x "+
-//				 "x - - zn- - - zn- - - - - x "+
-//				 "x - - - - zn- - - - - - - x "+
 //				 "x x x x x x x x x x x x x x ";
-		 
+//		 
 		
 		
 

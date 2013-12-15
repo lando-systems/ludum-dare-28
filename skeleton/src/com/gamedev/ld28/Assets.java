@@ -77,7 +77,7 @@ public class Assets {
 		switchsheet.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		barrel.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
-		doorsheet = new Texture(Gdx.files.internal("data/door.png"));
+		doorsheet = new Texture(Gdx.files.internal("data/doorsheet.png"));
 		doorsheet.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
 		teleport = new Texture(Gdx.files.internal("data/teleport.png"));
