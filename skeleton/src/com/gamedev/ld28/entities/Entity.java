@@ -3,8 +3,8 @@ package com.gamedev.ld28.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.gamedev.ld28.Assets;
-import com.gamedev.ld28.utils.Constants;
-import com.gamedev.ld28.utils.Utils;
+import com.gamedev.ld28.Level;
+import com.gamedev.ld28.utils.*;
 
 public class Entity
 {
@@ -14,8 +14,14 @@ public class Entity
   protected int oldX;
   protected int oldY;
   protected int oldDir;
+
+  public boolean walkable;
+  public boolean externallyMovable;
   protected Sprite sprite;
   protected Sprite[] animTiles;
+
+  protected Level level;
+
   private int TILE_SIZE = 64;
   private float animationTimer = 0f;
 
@@ -24,13 +30,17 @@ public class Entity
     FORWARD, BACK, TURN_CCW, TURN_CW
   }
 
-  public Entity(int x, int y, int dir)
+  public Entity(Level level, int x, int y, int dir)
   {
     this.x = x;
     this.y = y;
     this.dir = dir;
-    this.saveState();
-  }
+
+    walkable = false;
+    externallyMovable = false;
+
+    this.level = level;
+   }
 
   protected void buildAnim(Texture textureSheet)
   {
@@ -69,7 +79,7 @@ public class Entity
     return this.oldDir;
   }
 
-  protected void saveState()
+  public void saveState()
   {
     // Record the current state
     this.oldX = this.x;
@@ -77,7 +87,7 @@ public class Entity
     this.oldDir = this.dir;
   }
 
-  protected void doAction(Entity.ACTIONS action)
+  protected void moveAction(Entity.ACTIONS action)
   {
     switch(action)
     {
@@ -107,7 +117,7 @@ public class Entity
     else             this.x += positionChange;
   }
 
-  protected void movePush(int dir) {}
+  protected void bePushed(int dir) {}
   public void takeAction(Entity.ACTIONS action) {}
 
   public void revert()

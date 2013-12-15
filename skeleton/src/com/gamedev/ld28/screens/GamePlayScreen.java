@@ -26,6 +26,8 @@ public class GamePlayScreen extends GameScreen
   //'o ' - barrel
   //'wd' - you/wizard
   //'*d' - direction: n(orth), e(ast) s(outh) w(est)
+  
+  
   protected String mapData =  //Note- make sure length of string/2 is a perfect square
     "x x x x x x x x x x "+
     "x znx x - - - - - x "+
@@ -37,6 +39,20 @@ public class GamePlayScreen extends GameScreen
     "x q - - - o x x x x "+
     "x - - wn- - x x x x "+
     "x x x x x x x x x x ";
+  
+  /*
+  protected String mapData =  //Note- make sure length of string/2 is a perfect square
+		    "x x x x x x x x x x "+
+		    "x - - - - - - - - x "+
+		    "x - - - - - - - - x "+
+		    "x - - - - - - - - x "+
+		    "x - - - o - - - - x "+
+		    "x - - - zn- - - - x "+
+		    "x - - - - - - - - x "+
+		    "x - - - - - - - - x "+
+		    "x - - - - - - - - x "+
+		    "x x x x x x x x x x ";
+		    */
 
   public GamePlayScreen(Skeleton game)
   {

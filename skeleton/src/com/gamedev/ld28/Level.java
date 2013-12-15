@@ -56,19 +56,19 @@ public class Level
           case '-':
             break;
           case 'x':
-            entities.add(new Stone(x,(height-1)-y));
+            entities.add(new Stone(this,x,(height-1)-y));
             break;
           case 'z':
-            entities.add(new Zombie(x,(height-1)-y,dir));
+            entities.add(new Zombie(this,x,(height-1)-y,dir));
             break;
           case 'o':
-            entities.add(new Barrel(x,(height-1)-y));
+            entities.add(new Barrel(this,x,(height-1)-y));
             break;
           case 'w':
-              entities.add(new Wizard(x,(height-1)-y,dir));
+              entities.add(new Wizard(this,x,(height-1)-y,dir));
               break;
           case 'q': 
-        	  entities.add(new Exit(x,(height-1)-y));
+        	  entities.add(new Exit(this,x,(height-1)-y));
           default:
             break;
         }
@@ -81,17 +81,17 @@ public class Level
     if(action != null)
     {
       for(Entity entity : entities)
-      {
+    	entity.saveState();
+      for(Entity entity : entities)
         entity.takeAction(action);
-      }
       this.validateMap();
     }
   }
 
-  private Entity entityAtPosition(int x, int y)
+  public Entity entityAtPosition(int x, int y)
   {
     for(int i = 0; i < entities.size(); i++)
-      if(entities.get(i).getX() == x && entities.get(i).getY() == y)
+      if(entities.get(i).getOldX() == x && entities.get(i).getOldY() == y)
         return entities.get(i);
     return null;
   }
