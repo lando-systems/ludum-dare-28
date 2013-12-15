@@ -11,10 +11,4 @@ public class Stone extends Entity {
 		super(level, x, y, Constants.NORTH);
 		sprite = new Sprite(Assets.stone);
 	}
-	
-	@Override
-	public void revert() {
-		return;
-	}
-	
 }
