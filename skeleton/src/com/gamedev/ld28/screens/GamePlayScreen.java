@@ -26,8 +26,6 @@ public class GamePlayScreen extends GameScreen
   //'o ' - barrel
   //'wd' - you/wizard
   //'*d' - direction: n(orth), e(ast) s(outh) w(est)
-  
-  
   protected String mapData =  //Note- make sure length of string/2 is a perfect square
     "x x x x x x x x x x "+
     "x znx x - - - - - x "+
