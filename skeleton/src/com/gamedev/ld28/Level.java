@@ -51,6 +51,7 @@ public class Level
 	
 	protected Wizard player;
 	protected Exit exit;
+	protected ArrayList<Entity> zombies;
   protected ArrayList<Entity> entities;
   protected int width;
   protected int height;
@@ -64,6 +65,7 @@ public class Level
   
   public void resetLevel(){
 	    entities = new ArrayList<Entity>();
+	    zombies = new ArrayList<Entity>();
 	    levelState = 1; //should be 0, but is just auto 1 for now until we have rendering code for beginning and end
 
 	    this.parseMapDataIntoEntities(mapData[currentLevel]);
@@ -107,7 +109,9 @@ public class Level
             entities.add(new Stone(this,x,(height-1)-y));
             break;
           case 'z':
-            entities.add(new Zombie(this,x,(height-1)-y,dir));
+        	  Zombie z = new Zombie(this,x,(height-1)-y,dir);
+        	  zombies.add(z);
+        	  entities.add(z);
             break;
           case 'o':
             entities.add(new Barrel(this,x,(height-1)-y));
@@ -195,7 +199,11 @@ public class Level
       case 2://level end
         break;
     }
+    
+    for(Entity entity: zombies)
+        entity.render(0);
     player.render(0); // I need to be here so i draw on top of things.
+    
     Utils.drawShadowText(Assets.batch, "Level " + (currentLevel+1), Config.screenHalfWidth - 40, Config.screenHalfHeight - 70, 30,30, Color.GRAY, Utils.EStringJustify.RIGHT);
     Utils.drawShadowText(Assets.batch, "Lives 1", Config.screenHalfWidth - 40, Config.screenHalfHeight - 90, Color.GRAY, Utils.EStringJustify.RIGHT);
     Utils.drawShadowText(Assets.batch, mapDesc[currentLevel], Config.screenHalfWidth - 40, Config.screenHalfHeight - 120, 20,20, Color.GRAY, Utils.EStringJustify.RIGHT);
