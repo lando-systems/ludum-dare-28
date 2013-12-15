@@ -18,6 +18,7 @@ public class Assets {
 
 	public static Texture spritesheet;
 	public static Texture titleBackground;
+	public static Texture endGameBackground;
 	public static Texture gameBoard;
 	public static Texture zombiesheet;
 	public static Texture wizardsheet;
@@ -52,6 +53,9 @@ public class Assets {
 		
 		titleBackground = new Texture(Gdx.files.internal("data/titlescreen.png"));
 		titleBackground.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		endGameBackground = new Texture(Gdx.files.internal("data/endscreen.png"));
+		endGameBackground.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
 		zombiesheet = new Texture(Gdx.files.internal("data/zombie.png"));
 		zombiesheet.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);

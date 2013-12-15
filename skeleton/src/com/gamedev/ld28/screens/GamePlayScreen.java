@@ -30,7 +30,7 @@ public class GamePlayScreen extends GameScreen
     //sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
     //sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
 
-    currentLevel = new Level(0);
+    currentLevel = new Level(0, game);
   }
 
   @Override
