@@ -109,6 +109,7 @@ public class GamePlayScreen extends GameScreen
     for(int i = 0; i < entities.size(); i++)
       if(entities.get(i).getX() == x && entities.get(i).getY() == y)
         return entities.get(i);
+    return null;
   }
 
   @Override
