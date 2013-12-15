@@ -1,5 +1,7 @@
 package com.gamedev.ld28.entities;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.gamedev.ld28.Assets;
@@ -45,16 +47,21 @@ public class Door extends Entity {
 	
 	public void close() {
 		System.out.println("Door | close() | x='"+this.x+"', y='"+this.y+"'");
+		int i;
+		ArrayList<Entity> entitiesRightHere;
 		// Only close the door if:
 		// Nothing is on the door:
-    	if (level.entityAtOldPosition(this.x,this.y) != null) {
-    		
-    	} else {
-    		
-    	}
+		entitiesRightHere = level.getEntitesAtPosition(x, y);
+		for (i = 0; i < entitiesRightHere.size(); i++) {
+			if (entitiesRightHere.get(i) != this) {
+				// We've found something blocking the door.
+				return;
+			}
+		}
+		
     	// At least one of the paired switches is off.
     	Entity pE;
-		for (int i = 0; i < this.pairedEntities.size(); i++) {
+		for (i = 0; i < this.pairedEntities.size(); i++) {
 			pE = this.pairedEntities.get(i);
 			if (pE instanceof Switch) {
 				if (!pE.isOn) {

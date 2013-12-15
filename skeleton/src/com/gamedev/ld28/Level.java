@@ -343,6 +343,18 @@ public class Level {
 				return entities.get(i);
 		return null;
 	}
+	
+	public ArrayList<Entity> getEntitesAtPosition(int x, int y) {
+		ArrayList<Entity> entitiesFound = new ArrayList<Entity>();
+		Entity e;
+		for (int i = 0; i < entities.size(); i++) {
+			e = entities.get(i);
+			if (e.getX() == x && e.getY() == y) {
+				entitiesFound.add(e);
+			}
+		}
+		return entitiesFound;	
+	};
 
 	public void validateMap()
 	{
