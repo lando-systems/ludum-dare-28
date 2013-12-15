@@ -133,8 +133,8 @@ public class Level {
 					// Level 11
 			          "x x x x x x x x x x x x x x " 
 					+ "x ws- - - - - - - - - - x x "
-					+ "x x x x x x x x x x x znx x "
-					+ "x x x x x x x x x x x znx x "
+					+ "x x x x x x x x x x x zex x "
+					+ "x x x x x x x x x x x zex x "
 					+ "x x x x x x x x x x x - x x "
 					+ "x x x x x x x x x x x - x x "
 					+ "x x x x x x x x x x x - x x "
@@ -165,7 +165,7 @@ public class Level {
 	protected int width;
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
-	private int currentLevel = 8;
+	private int currentLevel = 10;
 
 	public Level(int level) {
 
