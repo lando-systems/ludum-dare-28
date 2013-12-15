@@ -12,7 +12,7 @@ public class Level
 	private String[] mapData = new String[] {
 			//Level 1
 			"x x x x x x x x x x x x x x "+
-		    "x znx x - - - - - x x wsx x "+
+		    "x znx x - - - s - x x wsx x "+
 		    "x - x - zs- o - - x x - x x "+
 		    "x - ?a- - - - ze- x x - x x "+
 		    "x - - o - zw- - - x x - x x "+
@@ -77,6 +77,37 @@ public class Level
 
   public Level(int level)
   {
+	  
+//	  // DEBUG LEVEL
+//	  mapData[0] = 
+//			"x x x x x x x x x x x x x x "+
+//		    "x - - - - - - - - - - - - x "+
+//		    "x - - - - - - - - - - - - x "+
+//		    "x - - - - - zeo sa- - - - x "+
+//		    "x - - - - - - - - - - - - x "+
+//		    "x - - - - - - - - - - - - x "+
+//		    "x - - - - - - weda- - - - x "+
+//		    "x - - - - - - - - - - - - x "+
+//		    "x - - - - - - - - - - - - x "+
+//		    "x x x x x x x x x x x x x x ";
+//	  
+//	  // DEBUG LEVEL
+//	  mapData[0] = 
+//			  "x x x x x x x x x x x x x x "+
+//			  "x - - - - - - - - - - - - x "+
+//			  "x - - - - - - - - - - - - x "+
+//			  "x - - - - - - - - - - - - x "+
+//			  "x - - - - - - wn- - - - - x "+
+//			  "x - - - - - - - - - - - - x "+
+//			  "x - - - - - - - - - - - - x "+
+//			  "x - - - - - - - - - - - - x "+
+//			  "x - - - - - - - - - - - - x "+
+//			  "x x x x x x x x x x x x x x ";
+//	  
+//	  
+	  
+	  
+	  
 	  currentLevel = level;
 	  resetLevel();
   }
@@ -120,33 +151,43 @@ public class Level
             break;
         }
 
+        int yPos = (height-1)-y;
+        
         //Find type
         switch(mapString.charAt(((y*width)+x)*2))
         {
           case '-':
             break;
           case 'x':
-            entities.add(new Stone(this,x,(height-1)-y));
+            entities.add(new Stone(this,x,yPos));
             break;
           case 'z':
-        	  Zombie z = new Zombie(this,x,(height-1)-y,dir);
+        	  Zombie z = new Zombie(this,x,yPos,dir);
         	  movingObjects.add(z);
         	  entities.add(z);
             break;
           case 'o':
-        	  Barrel b = new Barrel(this,x,(height-1)-y);
+        	  Barrel b = new Barrel(this,x,yPos);
         	  movingObjects.add(b);
         	  entities.add(b);
             break;
           case 'w':
-            player = new Wizard(this,x,(height-1)-y,dir);
+            player = new Wizard(this,x,yPos,dir);
             entities.add(player);
             break;
           case '?': 
-            entities.add(new Teleporter(this,x,(height-1)-y,arg)); 
+            entities.add(new Teleporter(this,x,yPos,arg)); 
             break;
+            
+          case Constants.SWITCH:
+        	  entities.add(new Switch(this, x, yPos, arg));
+        	  break;
+          case Constants.DOOR:
+        	  entities.add(new Door(this, x, yPos, arg));
+        	  break;
+        	  
           case 'q': 
-            exit = new Exit(this,x,(height-1)-y); 
+            exit = new Exit(this,x,yPos); 
             entities.add(exit);
             break;
           default:
@@ -172,6 +213,28 @@ public class Level
         }
       }
     }
+    
+    this.pairEntities();
+  }
+  
+  private void pairEntities() {
+	  int i, j;
+	  Entity eA, eB;
+	  iLoop: for (i = 0; i < entities.size(); i++) {
+		  eA = entities.get(i);
+		  if (eA.getPairId() == '0')
+			  continue iLoop;
+		  jLoop: for (j = i+1; j < entities.size(); j++) {
+			  eB = entities.get(j);
+			  if (eB.getPairId() == '0')
+				  continue jLoop;
+			  // Both entities have a pairId
+			  if (eA.getPairId() == eB.getPairId()) {
+				  // Match!
+				  eA.pairWithEntity(eB);
+			  }
+		  }
+	  }
   }
 
   public void takeAction(Entity.ACTIONS action)
@@ -240,16 +303,20 @@ public class Level
   
   public void performInteractions()
   {
+	  
+	  boolean switchOverlap;
 	  //perform any inter-entity actions
 	  Entity eA, eB;
       for(int i = 0; i < this.entities.size(); i++)
       {
         eA = this.entities.get(i);
+        switchOverlap = false;
         for(int j = 0; j < this.entities.size(); j++)
         {
           eB = this.entities.get(j);
           if(eA != eB && (eA.overlaps(eB) || eA.passedThrough(eB)) && !eB.conflictNoted)
-          {
+          { 
+        	  
             if(eA instanceof Teleporter)
             {
             	
@@ -262,14 +329,30 @@ public class Level
             		}
               }
             }
-            if(eA instanceof Exit && eB  instanceof Wizard)
+            if(eA instanceof Exit && eB instanceof Wizard)
             {
     	      currentLevel = Math.min(currentLevel+1, mapData.length-1);
     	      resetLevel();
               return;
             }
           }
+          
+      		// Tests for on/off objects
+      		if (eA != eB &&
+      			eA.overlaps(eB)) {
+      			// 
+      			if (eA instanceof Switch && !eB.walkable) {
+      				((Switch)eA).turnOn();
+      				switchOverlap = true;
+      			}
+      		}
+          
         }
+        
+    	if (eA instanceof Switch && !switchOverlap) {
+    		((Switch) eA).turnOff();
+    	}
+    	
       }
       for(Entity entity : entities)
     	  entity.conflictNoted = false;

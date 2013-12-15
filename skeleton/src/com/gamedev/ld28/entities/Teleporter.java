@@ -10,12 +10,11 @@ public class Teleporter extends Entity
         public Teleporter sibling;
         public char id;
 
-	public Teleporter(Level level, int x, int y, char id)
-        {
+	public Teleporter(Level level, int x, int y, char id) {
 		super(level, x, y, Constants.NORTH);
-                this.walkable = true;
+        this.walkable = true;
 		sprite = new Sprite(Assets.teleport);
-                this.id = id;
+        this.id = id;
 	}
 
         public void teleport(Entity e)
