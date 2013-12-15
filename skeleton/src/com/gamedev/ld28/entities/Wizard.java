@@ -12,7 +12,7 @@ public class Wizard extends Entity {
 	@Override
 	public void takeAction(Entity.ACTIONS action) {
 		super.takeAction(action);
-		super.standardMove(action);
+		super.moveStandard(action);
 	}
 
 }

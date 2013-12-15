@@ -58,15 +58,28 @@ public class Entity {
 		return this.oldDir;
 	}
 	
-	
-	public void takeAction(Entity.ACTIONS action) {
+	public void saveState() {
 		// Record the current state
 		this.oldX = this.x;
 		this.oldY = this.y;
 		this.oldDir = this.dir;
 	}
 	
-	protected void standardMove(Entity.ACTIONS action) {
+	public void takeAction(Entity.ACTIONS action) {}
+	
+	protected void movePush(int dir) {
+		int positionChange = 1;
+		if (this.dir >= Constants.SOUTH) {
+			positionChange *= -1;
+		}
+		if (this.dir % 2 == 0) {
+			this.y += positionChange;
+		} else {
+			this.x += positionChange;
+		}	
+	}
+	
+	protected void moveStandard(Entity.ACTIONS action) {
 		
 		int positionChange = 1;
 		
