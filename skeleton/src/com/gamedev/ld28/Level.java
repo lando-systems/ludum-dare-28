@@ -56,13 +56,38 @@ public class Level
 			"x x x x x x x x x x x - x x "+
 			"x wnx x - x x - x x x - x x "+
 			"x - - zw- - - - zw- - - x x "+
+			"x x x x x x x x x x x x x x ", 
+			
+			// Level 5
+			"x x x x x x x x x x x x x x "+
+			"x wsx x - - - - - x x x x x "+
+			"x - x - zs- o - - x x x x x "+
+			"x - x - - - - ze- x x x x x "+
+			"x - - o zw- - - - o - - x x "+
+			"x x x - x - - - - x x - x x "+
+			"x x x x x x x x x x x - x x "+
+			"x q x x - x x - x x x - x x "+
+			"x - - zw- - - - zw- - - x x "+
+			"x x x x x x x x x x x x x x ",
+			
+			// Level 6 
+			"x x x x x x x x x x x x x x "+
+			"x wsx x - - - - - x x x x x "+
+			"x - x - zs- o - - x x x x x "+
+			"x - x - - - - ze- x x x x x "+
+			"x - - o zw- - - - o - - x x "+
+			"x x x - x - - - - x x - x x "+
+			"x - - - - - - - - - - - - x "+
+			"x we- - - - - - - - - - - x "+
+			"x - - zw- - - - zw- - - - x "+
 			"x x x x x x x x x x x x x x "};
 	
 	private String[] mapDesc = new String[] {
 	"Get to the next level ",
 	"Oh noes there is a zombie in your way ",
 	"Now there are two zombies in your way ",
-	"You are not strong enough to move those barrels on your own "
+	"You are not strong enough to move those barrels on your own ",
+	"This one you can get stuck on "
 	};
 	
 	protected Wizard player;
@@ -108,7 +133,7 @@ public class Level
 	  
 	  
 	  
-	  currentLevel = level;
+	  //currentLevel = level;
 	  resetLevel();
   }
   
