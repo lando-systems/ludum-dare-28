@@ -6,7 +6,7 @@ public class Wizard extends Entity {
 	
 	public Wizard(int x, int y, int dir) {
 		super(x, y, dir);
-		buildAnim(Assets.zombiesheet);
+		buildAnim(Assets.wizardsheet);
 	}
 	
 	@Override

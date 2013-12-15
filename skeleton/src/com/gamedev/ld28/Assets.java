@@ -19,8 +19,10 @@ public class Assets {
 	public static Texture titleBackground;
 	public static Texture gameBoard;
 	public static Texture zombiesheet;
+	public static Texture wizardsheet;
 	public static Texture stone;
 	public static Texture barrel;
+	public static Texture exit;
 
 
 	public static TextureRegion[][] letters;
@@ -45,8 +47,14 @@ public class Assets {
 		zombiesheet = new Texture(Gdx.files.internal("data/zombie.png"));
 		zombiesheet.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
+		wizardsheet = new Texture(Gdx.files.internal("data/wizard.png"));
+		wizardsheet.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
 		stone = new Texture(Gdx.files.internal("data/stone.png"));
 		stone.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		exit = new Texture(Gdx.files.internal("data/exit.png"));
+		exit.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		barrel = new Texture(Gdx.files.internal("data/barrel.png"));
 		barrel.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);

@@ -90,7 +90,7 @@ public class GamePlayScreen extends GameScreen
       Assets.batch.begin();
       Utils.setScreenPosition(gameBoard, 0, 0, Assets.gameBoard.getWidth(), Assets.gameBoard.getHeight());
       gameBoard.draw(Assets.batch);
-      currentLevel.render();
+      currentLevel.render(delta);
       Assets.batch.end();
     }
 
