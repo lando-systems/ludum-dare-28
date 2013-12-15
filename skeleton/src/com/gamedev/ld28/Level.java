@@ -80,14 +80,30 @@ public class Level
 			"x - - - - - - - - - - - - x "+
 			"x we- - - - - - - - - - - x "+
 			"x - - zw- - - - zw- - - - x "+
-			"x x x x x x x x x x x x x x "};
+			"x x x x x x x x x x x x x x ",
+			
+			// Level 7 
+			"x x x x x x x x x x x x x x "+
+			"x x x x x x x x x x x x x x "+
+			"x x x x x x x x x x x x x x "+
+			"x x x x x x x x x x x x x x "+
+			"x x x x x - znx q-x x x x x "+
+			"x x x x x wnzs- - x x x x x "+
+			"x x x x x x x x x x x x x x "+
+			"x x x x x x x x x x x x x x "+
+			"x x x x x x x x x x x x x x "+
+			"x x x x x x x x x x x x x x "			
+	
+	};
 	
 	private String[] mapDesc = new String[] {
-	"Get to the next level ",
-	"Oh noes there is a zombie in your way ",
-	"Now there are two zombies in your way ",
-	"You are not strong enough to move those barrels on your own ",
-	"This one you can get stuck on "
+	/*1*/ "Get to the next level ",
+	/*2*/ "Oh noes there is a zombie in your way ",
+	/*3*/ "Now there are two zombies in your way ",
+	/*4*/ "You are not strong enough to move those barrels on your own ",
+	/*5*/ "This one you can get stuck on ",
+	/*6*/ "? ",
+	/*7*/ "Close quarters"
 	};
 	
 	protected Wizard player;
@@ -98,7 +114,7 @@ public class Level
   protected int width;
   protected int height;
   protected int levelState; //0 = begin, 1 = playing, 2 = end
-  private int currentLevel = 0;
+  private int currentLevel = 5;
 
   public Level(int level)
   {
