@@ -1,7 +1,5 @@
 package com.gamedev.ld28.screens;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
@@ -13,13 +11,13 @@ import com.gamedev.ld28.Skeleton;
 
 import com.gamedev.ld28.utils.*;
 import com.gamedev.ld28.entities.*;
+import com.gamedev.ld28.Level;
 
 public class GamePlayScreen extends GameScreen
 {
   private OrthographicCamera camera;
   private Sprite gameBoard;
-
-  protected ArrayList<Entity> entities;
+  private Level currentLevel;
 
   //Sample data- in future we'll read in from file
   //'- ' - nothing
@@ -49,73 +47,12 @@ public class GamePlayScreen extends GameScreen
     //sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
     //sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
 
-    entities = new ArrayList<Entity>();
-    this.parseMapDataIntoEntities(mapData);
-  }
-
-  private void parseMapDataIntoEntities(String mapString)
-  {
-    int width;
-    int height = width = (int)Math.sqrt(mapString.length()/2);
-    int dir = 0;
-
-    for(int y = 0; y < height; y++)
-    {
-      for(int x = 0; x < width; x++)
-      {
-        //Find direction
-        switch(mapString.charAt(((y*width)+x)*2+1))
-        {
-          case 'n':
-            dir = Constants.NORTH;
-            break;
-          case 's':
-            dir = Constants.SOUTH;
-            break;
-          case 'e':
-            dir = Constants.EAST;
-            break;
-          case 'w':
-            dir = Constants.WEST;
-            break;
-          default:
-            break;
-        }
-        
-
-        //Find type
-        switch(mapString.charAt(((y*width)+x)*2))
-        {
-          case '-':
-            break;
-          case 'x':
-            entities.add(new Stone(x,(height-1)-y,dir));
-            break;
-          case 'z':
-            entities.add(new Zombie(x,(height-1)-y,dir));
-            break;
-          case 'w':
-            entities.add(new Wizard(x,(height-1)-y,dir));
-            break;
-          default:
-            break;
-        }
-      }
-    }
-  }
-
-  private Entity entityAtPosition(int x, int y)
-  {
-    for(int i = 0; i < entities.size(); i++)
-      if(entities.get(i).getX() == x && entities.get(i).getY() == y)
-        return entities.get(i);
-    return null;
+    currentLevel = new Level(mapData);
   }
 
   @Override
   public void update(float delta)
   {
-	  
     super.update(delta);
 
     if(Gdx.input.isKeyPressed(Keys.ESCAPE))
@@ -129,15 +66,7 @@ public class GamePlayScreen extends GameScreen
     if(Utils.isKeyJustPressed(Keys.S)) action = Entity.ACTIONS.BACK;
     if(Utils.isKeyJustPressed(Keys.D)) action = Entity.ACTIONS.TURN_CW;
 
-    if(action != null)
-    {
-      for(Entity entity : entities)
-      {
-    	  entity.takeAction(action);
-      }
-      this.validateMap();
-    }
-
+    currentLevel.takeAction(action);
 
     if (Gdx.input.justTouched()) {
       //game.setScreen(game.screens.get("SomeOtherScreen"));
@@ -160,13 +89,9 @@ public class GamePlayScreen extends GameScreen
       Assets.batch.begin();
       Utils.setScreenPosition(gameBoard, 0, 0, Assets.gameBoard.getWidth(), Assets.gameBoard.getHeight());
       gameBoard.draw(Assets.batch);
-      for(Entity entity: entities){
-    	  entity.render();
-      }
+      currentLevel.render();
       Assets.batch.end();
-
     }
-
 
   @Override
     public void dispose() {
@@ -174,31 +99,4 @@ public class GamePlayScreen extends GameScreen
 
   @Override
     public void resize(int width, int height) {}
-  
-  
-  
-	public void validateMap() {
-		
-		int i, j;
-		Entity eA, eB;
-		boolean isValid = false;
-		validityLoop: while (!isValid) {
-			isValid = true;
-			for (i = 0; i < this.entities.size(); i++) {
-				eA = this.entities.get(i);
-				for (j = i + 1; j < this.entities.size(); j++) {
-					eB = this.entities.get(j);
-					if (eA.overlaps(eB) ||
-						eA.passedThrough(eB)) {
-						eA.revert();
-						eB.revert();
-						isValid = false;
-						continue validityLoop;
-					}
-				}
-			}
-		}
-			
-	}
-
 }
