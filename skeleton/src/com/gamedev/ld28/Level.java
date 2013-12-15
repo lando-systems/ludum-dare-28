@@ -115,7 +115,8 @@ public class Level {
 	/* 5 */"This one you can get stuck on ",
 	/* 6 */"? ",
 	/* 7 */"Close quarters ",
-	/* 7 */"Door" };
+	/* 8 */"Door",
+	/* 9 */"barrel on door"};
 
 	protected Wizard player;
 	protected Exit exit;
