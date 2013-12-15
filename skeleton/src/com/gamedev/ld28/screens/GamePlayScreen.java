@@ -18,6 +18,7 @@ public class GamePlayScreen extends GameScreen
   private OrthographicCamera camera;
   private Sprite gameBoard;
   private Level currentLevel;
+  private float keyTimer = 0f;
 
   //Sample data- in future we'll read in from file
   //'- ' - nothing
@@ -70,6 +71,8 @@ public class GamePlayScreen extends GameScreen
   {
     super.update(delta);
 
+    keyTimer -= delta;
+    if (keyTimer <= 0 ) keyTimer = 0f;
     if(Gdx.input.isKeyPressed(Keys.ESCAPE))
     {
       //Gdx.app.exit();
@@ -77,16 +80,14 @@ public class GamePlayScreen extends GameScreen
     }
 
     Entity.ACTIONS action = null;
-    if(Utils.isKeyJustPressed(Keys.W)) action = Entity.ACTIONS.FORWARD;
-    if(Utils.isKeyJustPressed(Keys.A)) action = Entity.ACTIONS.TURN_CCW;
-    if(Utils.isKeyJustPressed(Keys.S)) action = Entity.ACTIONS.BACK;
-    if(Utils.isKeyJustPressed(Keys.D)) action = Entity.ACTIONS.TURN_CW;
-
-    currentLevel.takeAction(action);
-
-    if (Gdx.input.justTouched()) {
-      //game.setScreen(game.screens.get("SomeOtherScreen"));
+    if (keyTimer <= 0f){
+	    if(Utils.isKeyJustPressed(Keys.W)) action = Entity.ACTIONS.FORWARD;
+	    if(Utils.isKeyJustPressed(Keys.A)) action = Entity.ACTIONS.TURN_CCW;
+	    if(Utils.isKeyJustPressed(Keys.S)) action = Entity.ACTIONS.BACK;
+	    if(Utils.isKeyJustPressed(Keys.D)) action = Entity.ACTIONS.TURN_CW;
     }
+    if (action == Entity.ACTIONS.FORWARD || action == Entity.ACTIONS.BACK) keyTimer = Constants.MovementTime;
+    currentLevel.takeAction(action);
 
     camera.update();
     

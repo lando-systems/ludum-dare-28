@@ -14,6 +14,9 @@ public class Entity
   protected int oldX;
   protected int oldY;
   protected int oldDir;
+  private float tempX;
+  private float tempY;
+  private float movingTimer = 0f;
   public boolean shouldRevert;
   
   public boolean walkable;
@@ -114,9 +117,16 @@ public class Entity
     int positionChange = 1;
     if(dir >= Constants.SOUTH)
       positionChange *= -1;
-      
-    if(dir % 2 == 0) this.y += positionChange;
-    else             this.x += positionChange;
+    this.tempY = this.y;
+    this.tempX = this.x;
+    if(dir % 2 == 0) {
+    	this.tempY = this.y + (.5f * positionChange);
+    	this.y += positionChange;
+    } else {
+    	this.tempX = this.x + (.5f * positionChange);
+    	this.x += positionChange;
+    }
+    movingTimer = Constants.MovementTime;
   }
 
   protected void bePushed(int dir) {}
@@ -132,6 +142,7 @@ public class Entity
 
   public void render(float dt)
   {
+	  movingTimer -= dt;
 	  animationTimer += 2.0f * dt;
 	  if (animationTimer >= 4.0f) animationTimer -= 4.0f;
     Sprite tile = sprite;
@@ -139,7 +150,18 @@ public class Entity
       tile = animTiles[(dir * 4) + (int)animationTimer];
     if(tile != null)
     {
-      Utils.setScreenPosition(tile, x, y, 64, 64);
+      float targetX = x;
+      float targetY = y;
+      if (movingTimer > Constants.MovementTime/2.0f) {
+    	  targetX = Utils.lerp(this.oldX, this.tempX, (movingTimer-(Constants.MovementTime/2.0f)) * 2.0f * (1.0f/Constants.MovementTime));
+    	  targetY = Utils.lerp(this.oldY, this.tempY, (movingTimer-(Constants.MovementTime/2.0f)) * 2.0f * (1.0f/Constants.MovementTime));
+      }
+      else if (movingTimer > 0)
+      {
+    	  targetX = Utils.lerp(this.tempX, this.x, (movingTimer) * 2.0f * (1.0f/Constants.MovementTime));
+    	  targetY = Utils.lerp(this.tempY, this.y, (movingTimer) * 2.0f * (1.0f/Constants.MovementTime)); 
+      }
+      Utils.setScreenPosition(tile, targetX, targetY, 64, 64);
       tile.draw(Assets.batch);
     }
   }
