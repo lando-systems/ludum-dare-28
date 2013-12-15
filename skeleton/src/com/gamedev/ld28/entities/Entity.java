@@ -58,7 +58,7 @@ public class Entity {
 		return this.oldDir;
 	}
 	
-	public void saveState() {
+	protected void saveState() {
 		// Record the current state
 		this.oldX = this.x;
 		this.oldY = this.y;
@@ -69,10 +69,10 @@ public class Entity {
 	
 	protected void movePush(int dir) {
 		int positionChange = 1;
-		if (this.dir >= Constants.SOUTH) {
+		if (dir >= Constants.SOUTH) {
 			positionChange *= -1;
 		}
-		if (this.dir % 2 == 0) {
+		if (dir % 2 == 0) {
 			this.y += positionChange;
 		} else {
 			this.x += positionChange;

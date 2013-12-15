@@ -11,7 +11,7 @@ public class Wizard extends Entity {
 	
 	@Override
 	public void takeAction(Entity.ACTIONS action) {
-		super.takeAction(action);
+		super.saveState();
 		super.moveStandard(action);
 	}
 
