@@ -99,6 +99,18 @@ public class Level {
 					+ "x x x x x x x x x x x x x x "
 					+ "x x x q x x x x x x x x x x "
 					+ "x x x dax x x x x x x x x x "
+					+ "x x - - x - sax x x x x x x "
+					+ "x x wn- x zn- x x x x x x x "
+					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x ",
+					
+					// Level 9
+			          "x x x x x x x x x x x x x x " 
+					+ "x x x x x x x x x x x x x x "
+					+ "x x x q x x x x x x x x x x "
+					+ "x x x dax x x x x x x x x x "
 					+ "x x - - x - - - x x x x x x "
 					+ "x x wn- x zn- o x x x x x x "
 					+ "x x x x x - - sax x x x x x "
@@ -114,10 +126,10 @@ public class Level {
 	/* 3 */"Now there are two zombies in your way ",
 	/* 4 */"You are not strong enough to move those barrels on your own ",
 	/* 5 */"This one you can get stuck on ",
-	/* 6 */"? ",
+	/* 6 */"How did he get there ",
 	/* 7 */"Close quarters ",
-	/* 8 */"Door",
-	/* 9 */"barrel on door"};
+	/* 8 */"What does this do ",
+	/* 9 */"If you liked it then you should have put a barrel on it "};
 
 	protected Wizard player;
 	protected Exit exit;
@@ -127,7 +139,7 @@ public class Level {
 	protected int width;
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
-	private int currentLevel = 5;
+	private int currentLevel = 7;
 
 	public Level(int level) {
 
