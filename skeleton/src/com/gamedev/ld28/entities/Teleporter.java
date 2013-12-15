@@ -11,6 +11,7 @@ public class Teleporter extends Entity
 		super(level, x, y, Constants.NORTH);
         this.walkable = true;
 		sprite = new Sprite(Assets.teleport);
+		buildAnim(Assets.teleport_anim);
         this.pairId = id;
 	}
 

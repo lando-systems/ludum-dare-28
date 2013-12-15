@@ -165,7 +165,7 @@ public class Level {
 	protected int width;
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
-	private int currentLevel = 10;
+	private int currentLevel = 0;
 
 	public Level(int level) {
 
