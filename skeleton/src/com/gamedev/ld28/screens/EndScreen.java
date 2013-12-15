@@ -11,18 +11,18 @@ import com.gamedev.ld28.utils.*;
 import com.gamedev.ld28.Skeleton;
 
 
-public class TitleScreen extends GameScreen {
+public class EndScreen extends GameScreen {
 
 	private OrthographicCamera camera;
 	private Sprite sprite;
-//	private float flashTimer = 0;
+	private float flashTimer = 0;
 
-	public TitleScreen(Skeleton game) {
+	public EndScreen(Skeleton game) {
 		super(game);
 
 		camera = new OrthographicCamera(Config.screenWidth, Config.screenHeight);
 
-		sprite = new Sprite(Assets.titleBackground);
+		sprite = new Sprite(Assets.endGameBackground);
 		sprite.setSize(Config.screenWidth, Config.screenHeight);
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
@@ -37,10 +37,10 @@ public class TitleScreen extends GameScreen {
 //		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
 //			Gdx.app.exit();
 //		}
-
-		if (Gdx.input.justTouched()) {
-			game.setScreen(game.screens.get("Game"));
-		}
+//
+//		if (Gdx.input.justTouched()) {
+//			game.setScreen(game.screens.get("Game"));
+//		}
 //
 //		camera.update();
 //		flashTimer += delta;

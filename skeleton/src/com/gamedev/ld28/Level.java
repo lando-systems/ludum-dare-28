@@ -193,8 +193,9 @@ public class Level {
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
 	private int currentLevel = 11;
-
-	public Level(int level) {
+	private Skeleton game;
+	
+	public Level(int level, Skeleton game) {
 
 		
 //		 // DEBUG LEVEL
@@ -228,6 +229,7 @@ public class Level {
 
 		// currentLevel = level;
 		resetLevel();
+		this.game = game;
 	}
 
 	public void resetLevel() {
@@ -449,9 +451,13 @@ public class Level {
 						eB.takeAction(ACTIONS.TURN_CW);
 					}
 					if (eA instanceof Exit && eB instanceof Wizard) {
-						currentLevel = Math.min(currentLevel + 1,
-								mapData.length - 1);
-						resetLevel();
+						if (currentLevel >= mapData.length-1)
+							game.setScreen(game.screens.get("End"));
+						else
+						{
+							currentLevel ++;
+							resetLevel();
+						}
 						return;
 					}
 				}
