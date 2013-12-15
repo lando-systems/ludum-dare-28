@@ -10,6 +10,7 @@ public class Level
 {
 	private String helpText = "Arrows move you and zombies. Escape will reset the level ";
 	private String[] mapData = new String[] {
+			//Level 1
 			"x x x x x x x x x x x x x x "+
 		    "x znx x - - - - - x x wsx x "+
 		    "x - x - zs- o - - x x - x x "+
@@ -20,18 +21,20 @@ public class Level
 		    "x q - - - - - - x x x - x x "+
 		    "x - - - - - - - - - - - x x "+
 		    "x x x x x x x x x x x x x x ", 
-		    								 
+		    
+		    // Level 2
 			"x x x x x x x x x x x x x x "+
-			"x znx x - - - - - x x wsx x "+
+			"x znx x - - - - - x x q x x "+
 			"x - x - zs- o - - x x - x x "+
 			"x - - - - - - ze- x x - x x "+
 			"x - - o - zw- - - x x - x x "+
 			"x x zs- x - - - - x x - x x "+
-			"x x x x x x x x x x x - x x "+
-			"x q - - - - - - x x x - x x "+
-			"x - - - - - - - ze- - - x x "+
+			"x x x x x x x x x x x zex x "+
+			"x ws- - - - - - x x x - x x "+
+			"x - - - - - - - - - - - x x "+
 			"x x x x x x x x x x x x x x ",
 			
+			//Level 3
 			"x x x x x x x x x x x x x x "+
 			"x znx x - - - - - x x wsx x "+
 			"x - x - zs- o - - x x - x x "+
@@ -40,6 +43,18 @@ public class Level
 			"x x zs- x - - - - x x - x x "+
 			"x x x x x x x x x x x - x x "+
 			"x q x x - x x - x x x - x x "+
+			"x - - zw- - - - zw- - - x x "+
+			"x x x x x x x x x x x x x x ",
+			
+			// Level 4
+			"x x x x x x x x x x x x x x "+
+			"x q x x - - - - - x x - x x "+
+			"x - x - zs- o - - x x - x x "+
+			"x - - - - - - ze- x x - x x "+
+			"x - - o - zw- - - o - - - x "+
+			"x x zs- x - - - - x x - x x "+
+			"x x x x x x x x x x x - x x "+
+			"x wnx x - x x - x x x - x x "+
 			"x - - zw- - - - zw- - - x x "+
 			"x x x x x x x x x x x x x x "};
 	
@@ -60,8 +75,9 @@ public class Level
   protected int levelState; //0 = begin, 1 = playing, 2 = end
   private int currentLevel = 0;
 
-  public Level(String mapData)
+  public Level(int level)
   {
+	  currentLevel = level;
 	  resetLevel();
   }
   

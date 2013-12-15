@@ -20,39 +20,6 @@ public class GamePlayScreen extends GameScreen
   private Level currentLevel;
   private float keyTimer = 0f;
 
-  //Sample data- in future we'll read in from file
-  //'- ' - nothing
-  //'zd' - zombie
-  //'x ' - stone
-  //'o ' - barrel
-  //'wd' - you/wizard
-  //'*d' - direction: n(orth), e(ast) s(outh) w(est)
-  protected String mapData =  //Note- make sure length of string/2 is a perfect square
-    "x x x x x x x x x x "+
-    "x znx x - - - - - x "+
-    "x - x - zs- o - - x "+
-    "x - - - - - - ze- x "+
-    "x - - o - zw- - - x "+
-    "x x zs- x - - - - x "+
-    "x x x x x - x x x x "+
-    "x q - - - o x x x x "+
-    "x - - wn- - x x x x "+
-    "x x x x x x x x x x ";
-  
-  /*
-  protected String mapData =  //Note- make sure length of string/2 is a perfect square
-		    "x x x x x x x x x x "+
-		    "x - - - - - - - - x "+
-		    "x - - - - - - - - x "+
-		    "x - - - - - - - - x "+
-		    "x - - - o - - - - x "+
-		    "x - - - zn- - - - x "+
-		    "x - - - - - - - - x "+
-		    "x - - - - - - - - x "+
-		    "x - - - - - - - - x "+
-		    "x x x x x x x x x x ";
-		    */
-
   public GamePlayScreen(Skeleton game)
   {
     super(game);
@@ -63,7 +30,7 @@ public class GamePlayScreen extends GameScreen
     //sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
     //sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
 
-    currentLevel = new Level(mapData);
+    currentLevel = new Level(0);
   }
 
   @Override
