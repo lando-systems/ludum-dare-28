@@ -29,7 +29,8 @@ public class Level
 			"x x x x x x x x x x x - x x "+
 			"x q - - - - - - x x x - x x "+
 			"x - - - - - - - ze- - - x x "+
-			"x x x x x x x x x x x x x x ",								""};
+			"x x x x x x x x x x x x x x "};
+	
 	private String[] mapDesc = new String[] {
 	"Get to the next level ",
 	"Oh noes there is a zombie in your way "
@@ -163,7 +164,8 @@ public class Level
       }
     }
     if (exit.getX() == player.getX() && exit.getY() == player.getY()){
-    	currentLevel++;
+    	currentLevel = Math.min(currentLevel++, mapData.length);
+    	
     	resetLevel();
     }
   }
