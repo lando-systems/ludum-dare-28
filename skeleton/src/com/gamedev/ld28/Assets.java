@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,6 +27,9 @@ public class Assets {
 	public static Texture barrel;
 	public static Texture exit;
 	public static Texture teleport;
+	
+	public static Sound doorCloseSound;
+	public static Sound doorOpenSound;
 
 
 	public static TextureRegion[][] letters;
@@ -74,6 +78,9 @@ public class Assets {
 
 		gameBoard = new Texture(Gdx.files.internal("data/gamebackground.png"));
 		gameBoard.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		doorOpenSound = Gdx.audio.newSound(Gdx.files.internal("data/audio/door_open.wav"));
+		doorCloseSound = Gdx.audio.newSound(Gdx.files.internal("data/audio/door_close.wav"));
 		
 		letters = splitAndGet(spritesheet, 8, 8, 0, 30, 26, 1);
 		digits  = splitAndGet(spritesheet, 8, 8, 0, 31, 10, 1);
