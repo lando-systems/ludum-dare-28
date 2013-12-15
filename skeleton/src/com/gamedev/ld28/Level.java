@@ -30,11 +30,23 @@ public class Level
 			"x x x x x x x x x x x - x x "+
 			"x q - - - - - - x x x - x x "+
 			"x - - - - - - - ze- - - x x "+
+			"x x x x x x x x x x x x x x ",
+			
+			"x x x x x x x x x x x x x x "+
+			"x znx x - - - - - x x wsx x "+
+			"x - x - zs- o - - x x - x x "+
+			"x - - - - - - ze- x x - x x "+
+			"x - - o - zw- - - x x - x x "+
+			"x x zs- x - - - - x x - x x "+
+			"x x x x x x x x x x x - x x "+
+			"x q x x - x x - x x x - x x "+
+			"x - - zw- - - - zw- - - x x "+
 			"x x x x x x x x x x x x x x "};
 	
 	private String[] mapDesc = new String[] {
 	"Get to the next level ",
-	"Oh noes there is a zombie in your way "
+	"Oh noes there is a zombie in your way ",
+	"Now there are two zombies in your way"
 	};
 	
 	protected Wizard player;
@@ -165,7 +177,7 @@ public class Level
       }
     }
     if (exit.getX() == player.getX() && exit.getY() == player.getY()){
-    	currentLevel = Math.min(currentLevel++, mapData.length);
+    	currentLevel = Math.min(currentLevel+1, mapData.length-1);
     	
     	resetLevel();
     }
