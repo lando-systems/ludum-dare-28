@@ -132,13 +132,19 @@ public class Utils {
 		return (Config.rand.nextInt(100) < prob);
 	}	
 	
+	public static float lerp(float start, float end, float amount){
+		if (amount < 0) return start;
+		if (amount > 1) return end;
+		return (start * amount) + (end * (1.0f-amount));
+	}
+	
 	
 	private static int gameBoardLeft =50;
 	private static int gameBoardBottom = 40;
 	
-	public static void setScreenPosition(Sprite sprite, int posX, int posY, int width, int height){
-		int x = gameBoardLeft -Config.screenHalfWidth + (posX * width);
-		int y = gameBoardBottom -Config.screenHalfHeight + (posY * height);
+	public static void setScreenPosition(Sprite sprite, float posX, float posY, int width, int height){
+		float x = gameBoardLeft -Config.screenHalfWidth + (posX * width);
+		float y = gameBoardBottom -Config.screenHalfHeight + (posY * height);
 		sprite.setBounds(x, y, width, height);
 	}
 }

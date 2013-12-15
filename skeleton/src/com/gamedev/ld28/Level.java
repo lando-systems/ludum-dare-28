@@ -71,9 +71,8 @@ public class Level
 
   private void parseMapDataIntoEntities(String mapString)
   {
-    int width;
     int height = 10;
-    width = 14;
+    int width = 14;
     int dir = 0;
 
     for(int y = 0; y < height; y++)
@@ -196,7 +195,7 @@ public class Level
       case 2://level end
         break;
     }
-    player.render(dt);
+    player.render(0); // I need to be here so i draw on top of things.
     Utils.drawShadowText(Assets.batch, "Level " + (currentLevel+1), Config.screenHalfWidth - 40, Config.screenHalfHeight - 70, 30,30, Color.GRAY, Utils.EStringJustify.RIGHT);
     Utils.drawShadowText(Assets.batch, "Lives 1", Config.screenHalfWidth - 40, Config.screenHalfHeight - 90, Color.GRAY, Utils.EStringJustify.RIGHT);
     Utils.drawShadowText(Assets.batch, mapDesc[currentLevel], Config.screenHalfWidth - 40, Config.screenHalfHeight - 120, 20,20, Color.GRAY, Utils.EStringJustify.RIGHT);
