@@ -34,7 +34,7 @@ public class GamePlayScreen extends GameScreen
     "x - - o - zw- - - x "+
     "x x zs- x - - - - x "+
     "x x x x x - x x x x "+
-    "x - - - - o x x x x "+
+    "x q - - - o x x x x "+
     "x - - wn- - x x x x "+
     "x x x x x x x x x x ";
 

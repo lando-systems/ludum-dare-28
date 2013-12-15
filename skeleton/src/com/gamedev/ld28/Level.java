@@ -2,6 +2,7 @@ package com.gamedev.ld28;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Color;
 import com.gamedev.ld28.utils.*;
 import com.gamedev.ld28.entities.*;
 
@@ -66,6 +67,8 @@ public class Level
           case 'w':
               entities.add(new Wizard(x,(height-1)-y,dir));
               break;
+          case 'q': 
+        	  entities.add(new Exit(x,(height-1)-y));
           default:
             break;
         }
@@ -132,6 +135,11 @@ public class Level
       case 2://level end
         break;
     }
+    Utils.drawShadowText(Assets.batch, "Level 1", Config.screenHalfWidth - 40, Config.screenHalfHeight - 70, 30,30, Color.GRAY, Utils.EStringJustify.RIGHT);
+    Utils.drawShadowText(Assets.batch, "Lives 1", Config.screenHalfWidth - 40, Config.screenHalfHeight - 90, Color.GRAY, Utils.EStringJustify.RIGHT);
+    Utils.drawShadowText(Assets.batch, "This is a really long sentance that needs to be wrapped", Config.screenHalfWidth - 40, Config.screenHalfHeight - 120, 20,20, Color.GRAY, Utils.EStringJustify.RIGHT);
+
   }
+  
 }
 
