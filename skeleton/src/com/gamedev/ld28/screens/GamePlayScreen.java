@@ -23,17 +23,18 @@ public class GamePlayScreen extends GameScreen
   //'- ' - nothing
   //'zd' - zombie
   //'x ' - stone
+  //'o ' - barrel
   //'wd' - you/wizard
   //'*d' - direction: n(orth), e(ast) s(outh) w(est)
   protected String mapData =  //Note- make sure length of string/2 is a perfect square
     "x x x x x x x x x x "+
     "x znx x - - - - - x "+
-    "x - x - zs- - - - x "+
+    "x - x - zs- o - - x "+
     "x - - - - - - ze- x "+
-    "x - - - - zw- - - x "+
+    "x - - o - zw- - - x "+
     "x x zs- x - - - - x "+
     "x x x x x - x x x x "+
-    "x - - - - - x x x x "+
+    "x - - - - o x x x x "+
     "x - - wn- - x x x x "+
     "x x x x x x x x x x ";
 

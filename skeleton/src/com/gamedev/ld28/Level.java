@@ -55,14 +55,17 @@ public class Level
           case '-':
             break;
           case 'x':
-            entities.add(new Stone(x,(height-1)-y,dir));
+            entities.add(new Stone(x,(height-1)-y));
             break;
           case 'z':
             entities.add(new Zombie(x,(height-1)-y,dir));
             break;
-          case 'w':
-            entities.add(new Wizard(x,(height-1)-y,dir));
+          case 'o':
+            entities.add(new Barrel(x,(height-1)-y));
             break;
+          case 'w':
+              entities.add(new Wizard(x,(height-1)-y,dir));
+              break;
           default:
             break;
         }
