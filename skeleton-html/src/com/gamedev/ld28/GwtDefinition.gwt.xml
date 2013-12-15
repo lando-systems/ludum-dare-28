@@ -5,6 +5,6 @@
 	<inherits name='aurelienribon.bodyeditorloader' />
 	<inherits name='aurelienribon.tweenengine' />
 	<inherits name='Skeleton' />
-	<entry-point class='com.gamedev.ld27.client.GwtLauncher' />
+	<entry-point class='com.gamedev.ld28.client.GwtLauncher' />
 	<set-configuration-property name="gdx.assetpath" value="../skeleton-android/assets" />
 </module>
