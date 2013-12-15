@@ -22,10 +22,17 @@ public class Entity
   
   public boolean walkable;
   public boolean externallyMovable;
+  
+  public boolean isOn;
+  
   protected Sprite sprite;
   protected Sprite[] animTiles;
+  protected Sprite[] onOffTiles;
 
   protected Level level;
+  
+  protected Entity pairedEntity;
+  protected char pairId = '0';
 
   private int TILE_SIZE = 64;
   private float animationTimer = 0f;
@@ -60,6 +67,13 @@ public class Entity
       }
     }
   }
+  
+  protected void buildOnOffTiles(Texture textureSheet) {
+	  onOffTiles = new Sprite[1 * 2];
+	  for (int y = 0; y < 2; y++) {
+		  onOffTiles[y] = new Sprite(textureSheet, 0, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+	  }
+  }
 
   public int getX()
   {
@@ -85,6 +99,10 @@ public class Entity
   {
     return this.oldDir;
   }
+  public char getPairId() {
+	  return this.pairId;
+  }
+  
 
   public void saveState()
   {
@@ -152,8 +170,13 @@ public class Entity
 	  animationTimer += 2.0f * dt;
 	  if (animationTimer >= 4.0f) animationTimer -= 4.0f;
     Sprite tile = sprite;
-    if(animTiles != null)
+    
+    if(animTiles != null) {
       tile = animTiles[(dir * 4) + (int)animationTimer];
+    } else if (onOffTiles != null) {
+    	tile = this.isOn ? onOffTiles[1] : onOffTiles[0];
+    }
+    
     if(tile != null)
     {
       float targetX = x;
@@ -190,4 +213,10 @@ public class Entity
     else
       return false;
   }
+  
+  public void pairWithEntity(Entity entity) {
+	  this.pairedEntity = entity;
+	  entity.pairedEntity = entity;
+  }
+  
 }

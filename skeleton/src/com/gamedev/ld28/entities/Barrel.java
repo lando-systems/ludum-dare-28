@@ -7,6 +7,7 @@ import com.gamedev.ld28.utils.Constants;
 
 public class Barrel extends Entity
 {
+	
   public Barrel(Level level, int x, int y)
   {
     super(level, x, y, Constants.NORTH);

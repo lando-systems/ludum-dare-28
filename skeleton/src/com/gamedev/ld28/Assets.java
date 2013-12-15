@@ -21,6 +21,8 @@ public class Assets {
 	public static Texture zombiesheet;
 	public static Texture wizardsheet;
 	public static Texture stone;
+	public static Texture switchsheet;
+	public static Texture doorsheet;
 	public static Texture barrel;
 	public static Texture exit;
 	public static Texture teleport;
@@ -59,10 +61,17 @@ public class Assets {
 		
 		barrel = new Texture(Gdx.files.internal("data/barrel.png"));
 		barrel.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+
+		switchsheet = new Texture(Gdx.files.internal("data/switch.png"));
+		switchsheet.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		barrel.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
+		doorsheet = new Texture(Gdx.files.internal("data/door.png"));
+		doorsheet.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+
 		teleport = new Texture(Gdx.files.internal("data/teleport.png"));
 		teleport.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
+
 		gameBoard = new Texture(Gdx.files.internal("data/gamebackground.png"));
 		gameBoard.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		

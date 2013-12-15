@@ -8,4 +8,8 @@ public class Constants
   public static final int WEST  = 3;
   
   public static final float MovementTime = .4f;
+  
+  public static final char DOOR = 'd';
+  public static final char SWITCH = 's';
+  
 }
