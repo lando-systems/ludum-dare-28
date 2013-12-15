@@ -7,7 +7,7 @@ import com.gamedev.ld28.utils.*;
 import com.gamedev.ld28.entities.*;
 
 public class Level {
-	private String helpText = "Arrows move you and zombies. Escape will reset the level ";
+	private String helpText = "WASD move you and zombies. Escape will reset the level ";
 	private String[] mapData = new String[] {
 			// Level 1
 			          "x x x x x x x x x x x x x x " 
@@ -71,14 +71,14 @@ public class Level {
 
 			// Level 6
 			          "x x x x x x x x x x x x x x " 
-					+ "x wsx x - - - - - x x x x x "
-					+ "x - x - zs- o - - x x x x x "
+					+ "x q ?ax - - - - - x x x x x "
+					+ "x - x x zs- o - - x x x x x "
 					+ "x - x - - - - ze- x x x x x "
-					+ "x - - o zw- - - - o - - x x "
+					+ "x - o - zw- - - - o - - x x "
 					+ "x x x - x - - - - x x - x x "
 					+ "x - - - - - - - - - - - - x "
 					+ "x we- - - - - - - - - - - x "
-					+ "x - - zw- - - - zw- - - - x "
+					+ "x - - zw- - - - zw- - ?a- x "
 					+ "x x x x x x x x x x x x x x ",
 
 			// Level 7
@@ -125,7 +125,7 @@ public class Level {
 	protected int width;
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
-	private int currentLevel = 7;
+	private int currentLevel = 5;
 
 	public Level(int level) {
 
