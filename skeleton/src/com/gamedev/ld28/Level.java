@@ -239,20 +239,6 @@ public class Level {
 			}
 		}
 
-		// pair id'd entities
-		Entity eA, eB;
-		for (int i = 0; i < entities.size(); i++) {
-			eA = entities.get(i);
-			for (int j = i + 1; j < entities.size(); j++) {
-				eB = entities.get(j);
-				if (eA instanceof Teleporter && eB instanceof Teleporter
-						&& ((Teleporter) eA).id == ((Teleporter) eB).id) {
-					((Teleporter) eA).sibling = ((Teleporter) eB);
-					((Teleporter) eB).sibling = ((Teleporter) eA);
-				}
-			}
-		}
-
 		this.pairEntities();
 	}
 
@@ -300,7 +286,8 @@ public class Level {
 		return null;
 	}
 
-	public void validateMap() {
+	public void validateMap()
+	{
 		int i, j;
 		Entity eA, eB;
 
@@ -308,20 +295,26 @@ public class Level {
 		boolean isValid = false;
 		while (!isValid) {
 			isValid = true;
-			for (i = 0; i < this.entities.size(); i++) {
+			for (i = 0; i < this.entities.size(); i++) 
+			{
 				eA = this.entities.get(i);
-				for (j = i + 1; j < this.entities.size(); j++) {
+				for (j = i + 1; j < this.entities.size(); j++)
+				{
 					eB = this.entities.get(j);
 					if ((eA.overlaps(eB) || eA.passedThrough(eB))
-							&& !(eA.walkable || eB.walkable)) {
+							&& !(eA.walkable || eB.walkable)) 
+					{
 						eA.conflictNoted = true;
 						eB.conflictNoted = true;
 						isValid = false;
 					}
 				}
-				if (!isValid) {
-					for (Entity entity : entities) {
-						if (entity.conflictNoted) {
+				if (!isValid) 
+				{
+					for (Entity entity : entities) 
+					{
+						if (entity.conflictNoted) 
+						{
 							entity.revert();
 							entity.conflictNoted = false;
 						}
@@ -330,32 +323,28 @@ public class Level {
 				}
 			}
 		}
-
 	}
 
-	public void performInteractions() {
-
+	public void performInteractions()
+	{
 		boolean switchOverlap;
 		// perform any inter-entity actions
 		Entity eA, eB;
-		for (int i = 0; i < this.entities.size(); i++) {
+		for (int i = 0; i < this.entities.size(); i++)
+		{
 			eA = this.entities.get(i);
 			switchOverlap = false;
-			for (int j = 0; j < this.entities.size(); j++) {
+			for(int j = 0; j < this.entities.size(); j++)
+			{
 				eB = this.entities.get(j);
-				if (eA != eB && (eA.overlaps(eB) || eA.passedThrough(eB))
-						&& !eB.conflictNoted) {
-
-					if (eA instanceof Teleporter) {
-
-						if (this.entityAtPosition(
-								((Teleporter) eA).sibling.getX(),
-								((Teleporter) eA).sibling.getY()) == null) {
-							if (eB.getX() != eB.getOldX()
-									|| eB.getY() != eB.getOldY()) {
-								((Teleporter) eA).teleport(eB);
-								eB.conflictNoted = true;
-							}
+				if(eA != eB && (eA.overlaps(eB) || eA.passedThrough(eB)) && !eB.conflictNoted)
+				{
+					if(eA instanceof Teleporter)
+					{
+						if (eB.getX() != eB.getOldX() || eB.getY() != eB.getOldY())
+						{
+							((Teleporter) eA).teleport(eB);
+							eB.conflictNoted = true;
 						}
 					}
 					if (eA instanceof Exit && eB instanceof Wizard) {

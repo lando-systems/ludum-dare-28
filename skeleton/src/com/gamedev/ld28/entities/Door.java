@@ -27,6 +27,7 @@ public class Door extends Entity {
 	}
 	
 	public void close() {
+    	if(level.entityAtPosition(this.getX(),this.getY()) != null) return;
 		this.isOn = false;
 		this.walkable = false;
 	}
