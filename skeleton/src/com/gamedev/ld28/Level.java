@@ -8,23 +8,58 @@ import com.gamedev.ld28.entities.*;
 
 public class Level
 {
+	private String[] mapData = new String[] {
+			"x x x x x x x x x x x x x x "+
+		    "x znx x - - - - - x x wsx x "+
+		    "x - x - zs- o - - x x - x x "+
+		    "x - - - - - - ze- x x - x x "+
+		    "x - - o - zw- - - x x - x x "+
+		    "x x zs- x - - - - x x - x x "+
+		    "x x x x x x x x x x x - x x "+
+		    "x q - - - - - - x x x - x x "+
+		    "x - - - - - - - - - - - x x "+
+		    "x x x x x x x x x x x x x x ", 
+		    								 
+			"x x x x x x x x x x x x x x "+
+			"x znx x - - - - - x x wsx x "+
+			"x - x - zs- o - - x x - x x "+
+			"x - - - - - - ze- x x - x x "+
+			"x - - o - zw- - - x x - x x "+
+			"x x zs- x - - - - x x - x x "+
+			"x x x x x x x x x x x - x x "+
+			"x q - - - - - - x x x - x x "+
+			"x - - - - - - - ze- - - x x "+
+			"x x x x x x x x x x x x x x ",								""};
+	private String[] mapDesc = new String[] {
+	"Get to the next level ",
+	"Oh noes there is a zombie in your way "
+	};
+	
+	protected Wizard player;
+	protected Exit exit;
   protected ArrayList<Entity> entities;
   protected int width;
   protected int height;
   protected int levelState; //0 = begin, 1 = playing, 2 = end
+  private int currentLevel = 0;
 
   public Level(String mapData)
   {
-    entities = new ArrayList<Entity>();
-    levelState = 1; //should be 0, but is just auto 1 for now until we have rendering code for beginning and end
+	  resetLevel();
+  }
+  
+  public void resetLevel(){
+	    entities = new ArrayList<Entity>();
+	    levelState = 1; //should be 0, but is just auto 1 for now until we have rendering code for beginning and end
 
-    this.parseMapDataIntoEntities(mapData);
+	    this.parseMapDataIntoEntities(mapData[currentLevel]);
   }
 
   private void parseMapDataIntoEntities(String mapString)
   {
     int width;
-    int height = width = (int)Math.sqrt(mapString.length()/2);
+    int height = 10;
+    width = 14;
     int dir = 0;
 
     for(int y = 0; y < height; y++)
@@ -65,10 +100,12 @@ public class Level
             entities.add(new Barrel(this,x,(height-1)-y));
             break;
           case 'w':
-              entities.add(new Wizard(this,x,(height-1)-y,dir));
+        	  player = new Wizard(this,x,(height-1)-y,dir);
+              entities.add(player);
               break;
           case 'q': 
-        	  entities.add(new Exit(this,x,(height-1)-y));
+        	  exit = new Exit(this,x,(height-1)-y); 
+        	  entities.add(exit);
           default:
             break;
         }
@@ -125,6 +162,10 @@ public class Level
         }
       }
     }
+    if (exit.getX() == player.getX() && exit.getY() == player.getY()){
+    	currentLevel++;
+    	resetLevel();
+    }
   }
 
   public void render(float dt)
@@ -140,9 +181,10 @@ public class Level
       case 2://level end
         break;
     }
-    Utils.drawShadowText(Assets.batch, "Level 1", Config.screenHalfWidth - 40, Config.screenHalfHeight - 70, 30,30, Color.GRAY, Utils.EStringJustify.RIGHT);
+    player.render(dt);
+    Utils.drawShadowText(Assets.batch, "Level " + (currentLevel+1), Config.screenHalfWidth - 40, Config.screenHalfHeight - 70, 30,30, Color.GRAY, Utils.EStringJustify.RIGHT);
     Utils.drawShadowText(Assets.batch, "Lives 1", Config.screenHalfWidth - 40, Config.screenHalfHeight - 90, Color.GRAY, Utils.EStringJustify.RIGHT);
-    Utils.drawShadowText(Assets.batch, "This is a really long sentance that needs to be wrapped", Config.screenHalfWidth - 40, Config.screenHalfHeight - 120, 20,20, Color.GRAY, Utils.EStringJustify.RIGHT);
+    Utils.drawShadowText(Assets.batch, mapDesc[currentLevel], Config.screenHalfWidth - 40, Config.screenHalfHeight - 120, 20,20, Color.GRAY, Utils.EStringJustify.RIGHT);
   }
   
 }

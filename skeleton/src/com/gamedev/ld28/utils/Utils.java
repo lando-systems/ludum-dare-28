@@ -50,7 +50,7 @@ public class Utils {
 		drawText(batch, text, x, y, w, h, color, justify, true);	
 	}
 
-	private static int wrapLength = 200;
+	private static int wrapLength = 220;
 	public static void drawText(SpriteBatch batch, String text, float x, float y, int w, int h, Color color, EStringJustify justify, boolean wrap) {
 		if(wrap)
 		{
