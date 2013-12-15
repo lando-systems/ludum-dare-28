@@ -191,7 +191,8 @@ public class Level
   public Entity entityAtPosition(int x, int y)
   {
     for(int i = 0; i < entities.size(); i++)
-      if(entities.get(i).getOldX() == x && entities.get(i).getOldY() == y)
+      if(entities.get(i).getOldX() == x && entities.get(i).getOldY() == y &&
+        (entities.get(i) instanceof Zombie || entities.get(i) instanceof Barrel || entities.get(i) instanceof Wizard))
         return entities.get(i);
     return null;
   }
@@ -252,10 +253,13 @@ public class Level
             if(eA instanceof Teleporter)
             {
             	
-            	if(this.entityAtPosition(((Teleporter)eA).sibling.getX(),((Teleporter)eA).sibling.getY()) != null)
+            	if(this.entityAtPosition(((Teleporter)eA).sibling.getX(),((Teleporter)eA).sibling.getY()) == null)
               {
-            		((Teleporter)eA).teleport(eB);
-                    eB.conflictNoted = true;
+            		if(eB.getX() != eB.getOldX() || eB.getY() != eB.getOldY())
+            		{
+            			((Teleporter)eA).teleport(eB);
+            			eB.conflictNoted = true;
+            		}
               }
             }
             if(eA instanceof Exit && eB  instanceof Wizard)
