@@ -14,9 +14,34 @@ public class Teleporter extends Entity
         this.pairId = id;
 	}
 
-        public void teleport(Entity e)
-        {
-        	if(level.entityAtPosition(pairedEntity.getX(),pairedEntity.getY()) == null) 
-        		e.moveTo(pairedEntity.getX(),pairedEntity.getY());
-        }
+    public void teleport(Entity e)
+    {
+    	// There can only be one paired teleporter
+    	if (this.pairedEntities.size() == 0) {
+    		// No paired teleporter
+    		return;
+    	}
+    	Teleporter t = (Teleporter)this.pairedEntities.get(0);
+    	
+    	if(level.entityAtOldPosition(t.getX(),t.getY()) == null) 
+    		e.moveTo(t.getX(),t.getY());
+    }
+        
+    @Override
+    public void pairWithEntity(Entity entity) {
+    	// Teleporters can only pair with 1 other teleporter
+    	if (entity instanceof Teleporter) {
+    		if (this.pairedEntities.size() == 0) {
+    			this.pairedEntities.add(entity);
+    		} else {
+        		this.pairedEntities.set(0, entity);
+    		}
+    		if (entity.pairedEntities.size() == 0) {
+    			entity.pairedEntities.add(this);
+    		} else {
+    			entity.pairedEntities.set(0, this);
+    		}
+    	}
+    	
+    }
 }

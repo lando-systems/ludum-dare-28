@@ -23,20 +23,34 @@ public class Switch extends Entity {
 		if (this.isOn)
 			return;
 		this.isOn = true;
-		if (this.pairedEntity != null) {
-			if (this.pairedEntity instanceof Door) {
-				((Door) this.pairedEntity).open();
+		// For each paired entity:
+		Entity pE;
+		for (int i = 0; i < this.pairedEntities.size(); i++) {
+			pE = this.pairedEntities.get(i);
+			// Is it a door?
+			if (pE instanceof Door) {
+				// Try to open the door.
+				((Door) pE).open();
 			}
+			
 		}
 	}
 	
 	public void turnOff() {
 		this.isOn = false;
-		if (this.pairedEntity != null) {
-			if (this.pairedEntity instanceof Door) {
-				((Door) this.pairedEntity).close();
+		// For each paired entity:
+		Entity pE;
+		for (int i = 0; i < this.pairedEntities.size(); i++) {
+			pE = this.pairedEntities.get(i);
+			// Is it a door?
+			if (pE instanceof Door) {
+				// Try to close the door.
+				((Door) pE).close();
 			}
+			
 		}
+		
+		
 	}
 	
 }

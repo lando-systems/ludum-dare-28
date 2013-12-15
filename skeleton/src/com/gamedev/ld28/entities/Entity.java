@@ -1,5 +1,7 @@
 package com.gamedev.ld28.entities;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.gamedev.ld28.Assets;
@@ -31,7 +33,7 @@ public class Entity
 
   protected Level level;
   
-  protected Entity pairedEntity;
+  protected ArrayList<Entity> pairedEntities;
   public char pairId = '0';
 
   private int TILE_SIZE = 64;
@@ -54,6 +56,8 @@ public class Entity
 
     this.level = level;
     this.saveState();
+    
+    this.pairedEntities = new ArrayList<Entity>();
    }
 
   protected void buildAnim(Texture textureSheet)
@@ -215,8 +219,8 @@ public class Entity
   }
   
   public void pairWithEntity(Entity entity) {
-	  this.pairedEntity = entity;
-	  entity.pairedEntity = this;
+	  this.pairedEntities.add(entity);
+	  entity.pairedEntities.add(this);
   }
   
 }
