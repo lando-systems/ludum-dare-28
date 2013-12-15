@@ -20,6 +20,7 @@ public class Assets {
 	public static Texture gameBoard;
 	public static Texture zombiesheet;
 	public static Texture stone;
+	public static Texture barrel;
 
 
 	public static TextureRegion[][] letters;
@@ -46,6 +47,9 @@ public class Assets {
 		
 		stone = new Texture(Gdx.files.internal("data/stone.png"));
 		stone.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		barrel = new Texture(Gdx.files.internal("data/barrel.png"));
+		barrel.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		gameBoard = new Texture(Gdx.files.internal("data/gamebackground.png"));
 		gameBoard.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
