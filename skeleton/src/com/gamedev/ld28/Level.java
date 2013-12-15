@@ -140,6 +140,30 @@ public class Level {
 					+ "x x x x x x x x x x x - x x "
 					+ "x x x x - x x - x r x - x x "
 					+ "x q - - - - - - - - - - x x "
+					+ "x x x x x x x x x x x x x x ",
+					
+					// Level 12
+			          "x x x x x x x x x x x x x x " 
+					+ "x - - - - - - - - - - - q x "
+					+ "x - - - - - - - - - - - - x "
+					+ "x - - - - - - - - - - - - x "
+					+ "x - - - - - r - - - - - - x "
+					+ "x - - - - - - - - - - - - x "
+					+ "x - - - - - - - - - - - - x "
+					+ "x - - - - - - - - - - - - x "
+					+ "x wnznznznznznznznznznznznx "
+					+ "x x x x x x x x x x x x x x ",
+					
+					//Level 13
+					  "x x x x x x x x x x x x x x " 
+					+ "x ?a- ?bx - - - x ?ex ?zq x "
+					+ "x - - ?cx - ?d- x ?hx x x x "
+					+ "x zw- ?dx ?e- ?fx ?z?g- - x "
+					+ "x x x x x x x x x x x - - x "
+					+ "x - - - - - - zw- - - - - x "
+					+ "x ?g- - - x zsx - - x x x x "
+					+ "x x x - - x - x - - x ?c- x "
+					+ "x wn?a- - x ?bx - - x ?f?hx "
 					+ "x x x x x x x x x x x x x x "
 
 	};
@@ -155,7 +179,10 @@ public class Level {
 	/* 8 */"What does this do ",
 	/* 9 */"If you liked it then you should have put a barrel on it ",
 	/*10 */"Now we are out of sync ",
-	/*11 */"Get them back in sync "};
+	/*11 */"Get them back in sync ",
+	/*12 */"conga line ",
+	/*12 */"good luck yo "
+	};
 
 	protected Wizard player;
 	protected Exit exit;
@@ -165,7 +192,7 @@ public class Level {
 	protected int width;
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
-	private int currentLevel = 0;
+	private int currentLevel = 11;
 
 	public Level(int level) {
 
