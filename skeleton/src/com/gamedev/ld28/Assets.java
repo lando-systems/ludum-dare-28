@@ -27,6 +27,7 @@ public class Assets {
 	public static Texture barrel;
 	public static Texture exit;
 	public static Texture teleport;
+	public static Texture rotator;
 	
 	public static Sound doorCloseSound;
 	public static Sound doorOpenSound;
@@ -75,6 +76,9 @@ public class Assets {
 
 		teleport = new Texture(Gdx.files.internal("data/teleport.png"));
 		teleport.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		rotator = new Texture(Gdx.files.internal("data/rotate.png"));
+		rotator.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
 		gameBoard = new Texture(Gdx.files.internal("data/gamebackground.png"));
 		gameBoard.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
