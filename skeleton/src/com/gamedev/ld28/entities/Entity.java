@@ -32,7 +32,7 @@ public class Entity
   protected Level level;
   
   protected Entity pairedEntity;
-  protected char pairId = '0';
+  public char pairId = '0';
 
   private int TILE_SIZE = 64;
   private float animationTimer = 0f;
@@ -216,7 +216,7 @@ public class Entity
   
   public void pairWithEntity(Entity entity) {
 	  this.pairedEntity = entity;
-	  entity.pairedEntity = entity;
+	  entity.pairedEntity = this;
   }
   
 }
