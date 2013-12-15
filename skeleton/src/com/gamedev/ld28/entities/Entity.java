@@ -128,8 +128,10 @@ public class Entity {
 	}
 	
 	public boolean passedThrough(Entity entity) {
-		if (this.oldX == entity.getOldX() &&
-			this.oldY == entity.getOldY()) {
+		if (this.x == entity.getOldX() &&
+			this.y == entity.getOldY() &&
+			this.oldX == entity.getX() &&
+			this.oldY == entity.getY()) {
 			return true;
 		} else {
 			return false;
