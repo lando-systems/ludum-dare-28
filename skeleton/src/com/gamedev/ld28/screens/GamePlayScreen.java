@@ -104,6 +104,13 @@ public class GamePlayScreen extends GameScreen
     }
   }
 
+  private Entity entityAtPosition(int x, int y)
+  {
+    for(int i = 0; i < entities.size(); i++)
+      if(entities.get(i).getX() == x && entities.get(i).getY() == y)
+        return entities.get(i);
+  }
+
   @Override
   public void update(float delta)
   {
