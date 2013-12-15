@@ -128,6 +128,18 @@ public class Level {
 					+ "x x x x x - - sax x x x x x "
 					+ "x x x x x x x x x x x x x x "
 					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x ",
+					
+					// Level 11
+			          "x x x x x x x x x x x x x x " 
+					+ "x ws- - - - - - - - - - x x "
+					+ "x x x x x x x x x x x znx x "
+					+ "x x x x x x x x x x x znx x "
+					+ "x x x x x x x x x x x - x x "
+					+ "x x x x x x x x x x x - x x "
+					+ "x x x x x x x x x x x - x x "
+					+ "x x x x - x x - x r x - x x "
+					+ "x q - - - - - - - - - - x x "
 					+ "x x x x x x x x x x x x x x "
 
 	};
@@ -142,7 +154,8 @@ public class Level {
 	/* 7 */"Close quarters ",
 	/* 8 */"What does this do ",
 	/* 9 */"If you liked it then you should have put a barrel on it ",
-	/*10 */"Now we are out of sync "};
+	/*10 */"Now we are out of sync ",
+	/*11 */"Get them back in sync "};
 
 	protected Wizard player;
 	protected Exit exit;
@@ -152,7 +165,7 @@ public class Level {
 	protected int width;
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
-	private int currentLevel = 7;
+	private int currentLevel = 10;
 
 	public Level(int level) {
 
