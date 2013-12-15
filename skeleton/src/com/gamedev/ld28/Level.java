@@ -46,12 +46,14 @@ public class Level
 	private String[] mapDesc = new String[] {
 	"Get to the next level ",
 	"Oh noes there is a zombie in your way ",
-	"Now there are two zombies in your way"
+	"Now there are two zombies in your way ",
+	"You are not strong enough to move those barrels on your own "
 	};
 	
 	protected Wizard player;
 	protected Exit exit;
-	protected ArrayList<Entity> zombies;
+	protected ArrayList<Entity> movingObjects;
+
   protected ArrayList<Entity> entities;
   protected int width;
   protected int height;
@@ -65,7 +67,7 @@ public class Level
   
   public void resetLevel(){
 	    entities = new ArrayList<Entity>();
-	    zombies = new ArrayList<Entity>();
+	    movingObjects = new ArrayList<Entity>();
 	    levelState = 1; //should be 0, but is just auto 1 for now until we have rendering code for beginning and end
 
 	    this.parseMapDataIntoEntities(mapData[currentLevel]);
@@ -110,11 +112,13 @@ public class Level
             break;
           case 'z':
         	  Zombie z = new Zombie(this,x,(height-1)-y,dir);
-        	  zombies.add(z);
+        	  movingObjects.add(z);
         	  entities.add(z);
             break;
           case 'o':
-            entities.add(new Barrel(this,x,(height-1)-y));
+        	  Barrel b = new Barrel(this,x,(height-1)-y);
+        	  movingObjects.add(b);
+        	  entities.add(b);
             break;
           case 'w':
         	  player = new Wizard(this,x,(height-1)-y,dir);
@@ -200,7 +204,7 @@ public class Level
         break;
     }
     
-    for(Entity entity: zombies)
+    for(Entity entity: movingObjects)
         entity.render(0);
     player.render(0); // I need to be here so i draw on top of things.
     
