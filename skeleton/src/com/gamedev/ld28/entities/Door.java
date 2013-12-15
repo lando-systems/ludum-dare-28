@@ -22,14 +22,46 @@ public class Door extends Entity {
 	}
 	
 	public void open() {
-		this.isOn = true;
-		this.walkable = true;
+		// Attempt to open the door.
+		// The door only opens if all of its paired switches
+		Entity pE;
+		boolean allSwitchesAreOn = true;
+		for (int i = 0; i < this.pairedEntities.size() && allSwitchesAreOn; i++) {
+			pE = this.pairedEntities.get(i);
+			if (pE instanceof Switch) {
+				if (!pE.isOn) {
+					allSwitchesAreOn = false;
+				}
+			}
+		}
+		// 
+		if (allSwitchesAreOn) {
+			this.isOn = true;
+			this.walkable = true;
+		}
 	}
 	
 	public void close() {
-    	if(level.entityAtPosition(this.getX(),this.getY()) != null) return;
-		this.isOn = false;
-		this.walkable = false;
+		System.out.println("Door | close() | x='"+this.x+"', y='"+this.y+"'");
+		// Only close the door if:
+		// Nothing is on the door:
+    	if (level.entityAtOldPosition(this.x,this.y) != null) {
+    		
+    	} else {
+    		
+    	}
+    	// At least one of the paired switches is off.
+    	Entity pE;
+		for (int i = 0; i < this.pairedEntities.size(); i++) {
+			pE = this.pairedEntities.get(i);
+			if (pE instanceof Switch) {
+				if (!pE.isOn) {
+					this.isOn = false;
+					this.walkable = false;
+					return;
+				}
+			}
+		}
 	}
 	
 }

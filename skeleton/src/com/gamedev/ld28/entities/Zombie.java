@@ -27,7 +27,7 @@ public class Zombie extends Entity
         if(this.dir % 2 == 0) hypotheticalY += positionChange;
         else                  hypotheticalX += positionChange;
                   
-        movedEntity = level.entityAtPosition(hypotheticalX, hypotheticalY);
+        movedEntity = level.entityAtOldPosition(hypotheticalX, hypotheticalY);
         if(movedEntity != null && movedEntity.externallyMovable)
           movedEntity.bePushed(this.dir);
         else movedEntity = null;
