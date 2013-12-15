@@ -10,4 +10,9 @@ public class Stone extends Entity {
 		sprite = new Sprite(Assets.stone);
 	}
 	
+	@Override
+	public void revert() {
+		return;
+	}
+	
 }
