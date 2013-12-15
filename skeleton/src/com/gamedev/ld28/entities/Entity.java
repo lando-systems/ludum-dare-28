@@ -14,10 +14,11 @@ public class Entity
   protected int oldX;
   protected int oldY;
   protected int oldDir;
+  public boolean conflictNoted;
+
   private float tempX;
   private float tempY;
   private float movingTimer = 0f;
-  public boolean shouldRevert;
   
   public boolean walkable;
   public boolean externallyMovable;
@@ -39,12 +40,13 @@ public class Entity
     this.x = x;
     this.y = y;
     this.dir = dir;
-    this.shouldRevert = false;
+    this.conflictNoted = false;
 
     walkable = false;
     externallyMovable = false;
 
     this.level = level;
+    this.saveState();
    }
 
   protected void buildAnim(Texture textureSheet)
@@ -128,6 +130,11 @@ public class Entity
     }
     movingTimer = Constants.MovementTime;
   }
+  public void moveTo(int x, int y)
+  {
+    this.x = x;
+    this.y = y;
+  }
 
   protected void bePushed(int dir) {}
   public void takeAction(Entity.ACTIONS action) {}
@@ -137,7 +144,6 @@ public class Entity
     this.x = this.oldX;
     this.y = this.oldY;
     this.dir = this.oldDir;
-    this.shouldRevert = false;
   }
 
   public void render(float dt)

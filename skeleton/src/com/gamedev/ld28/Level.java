@@ -13,9 +13,9 @@ public class Level
 			"x x x x x x x x x x x x x x "+
 		    "x znx x - - - - - x x wsx x "+
 		    "x - x - zs- o - - x x - x x "+
-		    "x - - - - - - ze- x x - x x "+
+		    "x - ?a- - - - ze- x x - x x "+
 		    "x - - o - zw- - - x x - x x "+
-		    "x x zs- x - - - - x x - x x "+
+		    "x x zs- x - - ?a- x x - x x "+
 		    "x x x x x x x x x x x - x x "+
 		    "x q - - - - - - x x x - x x "+
 		    "x - - - - - - - - - - - x x "+
@@ -78,13 +78,15 @@ public class Level
     int height = 10;
     int width = 14;
     int dir = 0;
+    char arg = ' ';
 
     for(int y = 0; y < height; y++)
     {
       for(int x = 0; x < width; x++)
       {
-        //Find direction
-        switch(mapString.charAt(((y*width)+x)*2+1))
+        //Find argument
+        arg = mapString.charAt(((y*width)+x)*2+1);
+        switch(arg)
         {
           case 'n':
             dir = Constants.NORTH;
@@ -121,14 +123,36 @@ public class Level
         	  entities.add(b);
             break;
           case 'w':
-        	  player = new Wizard(this,x,(height-1)-y,dir);
-              entities.add(player);
-              break;
+            player = new Wizard(this,x,(height-1)-y,dir);
+            entities.add(player);
+            break;
+          case '?': 
+            entities.add(new Teleporter(this,x,(height-1)-y,arg)); 
+            break;
           case 'q': 
-        	  exit = new Exit(this,x,(height-1)-y); 
-        	  entities.add(exit);
+            exit = new Exit(this,x,(height-1)-y); 
+            entities.add(exit);
+            break;
           default:
             break;
+        }
+      }
+    }
+
+    //pair id'd entities
+    Entity eA, eB;
+    for(int i = 0; i < entities.size(); i++)
+    {
+      eA = entities.get(i);
+      for(int j = i+1; j < entities.size(); j++)
+      {
+        eB = entities.get(j);
+        if(eA instanceof Teleporter &&
+           eB instanceof Teleporter &&
+           ((Teleporter)eA).id == ((Teleporter)eB).id)
+        {
+          ((Teleporter)eA).sibling = ((Teleporter)eB);
+          ((Teleporter)eB).sibling = ((Teleporter)eA);
         }
       }
     }
@@ -139,10 +163,12 @@ public class Level
     if(action != null)
     {
       for(Entity entity : entities)
-    	entity.saveState();
+      	entity.saveState();
       for(Entity entity : entities)
         entity.takeAction(action);
       this.validateMap();
+      if(action == Entity.ACTIONS.FORWARD || action == Entity.ACTIONS.BACK)
+    	  this.performInteractions();
     }
   }
 
@@ -158,36 +184,75 @@ public class Level
   {
     int i, j;
     Entity eA, eB;
+
+    //find/correct immediate conflicts
     boolean isValid = false;
     while(!isValid)
     {
       isValid = true;
-      for (i = 0; i < this.entities.size(); i++)
+      for(i = 0; i < this.entities.size(); i++)
       {
         eA = this.entities.get(i);
-        for (j = i + 1; j < this.entities.size(); j++)
+        for(j = i + 1; j < this.entities.size(); j++)
         {
           eB = this.entities.get(j);
-          if ((eA.overlaps(eB) || eA.passedThrough(eB)) && !(eA.walkable || eB.walkable))
+          if((eA.overlaps(eB) || eA.passedThrough(eB)) && !(eA.walkable || eB.walkable))
           {
-        	  eA.shouldRevert = true;
-        	  eB.shouldRevert = true;
-              isValid = false;
+            eA.conflictNoted = true;
+            eB.conflictNoted = true;
+            isValid = false;
           }
         }
         if(!isValid)
         {
-        	for(Entity entity : entities)
-        		if(entity.shouldRevert) entity.revert();
-        	continue;
+          for(Entity entity : entities)
+          {
+            if(entity.conflictNoted)
+            {
+              entity.revert();
+              entity.conflictNoted = false;
+            }
+          }
+          continue;
         }
       }
     }
-    if (exit.getX() == player.getX() && exit.getY() == player.getY()){
-    	currentLevel = Math.min(currentLevel+1, mapData.length-1);
-    	
-    	resetLevel();
-    }
+
+    
+  }
+  
+  public void performInteractions()
+  {
+	  //perform any inter-entity actions
+	  Entity eA, eB;
+      for(int i = 0; i < this.entities.size(); i++)
+      {
+        eA = this.entities.get(i);
+        for(int j = 0; j < this.entities.size(); j++)
+        {
+          eB = this.entities.get(j);
+          if(eA != eB && (eA.overlaps(eB) || eA.passedThrough(eB)) && !eB.conflictNoted)
+          {
+            if(eA instanceof Teleporter)
+            {
+            	
+            	if(this.entityAtPosition(((Teleporter)eA).sibling.getX(),((Teleporter)eA).sibling.getY()) != null)
+              {
+            		((Teleporter)eA).teleport(eB);
+                    eB.conflictNoted = true;
+              }
+            }
+            if(eA instanceof Exit && eB  instanceof Wizard)
+            {
+    	      currentLevel = Math.min(currentLevel+1, mapData.length-1);
+    	      resetLevel();
+              return;
+            }
+          }
+        }
+      }
+      for(Entity entity : entities)
+    	  entity.conflictNoted = false;
   }
 
   public void render(float dt)
