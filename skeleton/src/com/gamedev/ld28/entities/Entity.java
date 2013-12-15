@@ -10,6 +10,9 @@ import com.gamedev.ld28.utils.*;
 
 public class Entity
 {
+	
+	public static final int TILE_SIZE = 64;
+	
   protected int x;
   protected int y;
   protected int dir;
@@ -20,7 +23,7 @@ public class Entity
 
   private float tempX;
   private float tempY;
-  private float movingTimer = 0f;
+  protected float movingTimer = 0f;
   
   public boolean walkable;
   public boolean externallyMovable;
@@ -36,8 +39,8 @@ public class Entity
   protected ArrayList<Entity> pairedEntities;
   public char pairId = '0';
 
-  private int TILE_SIZE = 64;
-  private float animationTimer = 0f;
+  
+  protected float animationTimer = 0f;
 
   public static enum ACTIONS
   {
@@ -67,7 +70,7 @@ public class Entity
     {
       for (int x = 0; x < 4; x++)
       {
-        animTiles[x + (y * 4)] = new Sprite(textureSheet, x*TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        animTiles[x + (y * 4)] = new Sprite(textureSheet, x*Entity.TILE_SIZE, y * Entity.TILE_SIZE, Entity.TILE_SIZE, Entity.TILE_SIZE);
       }
     }
   }
@@ -75,7 +78,7 @@ public class Entity
   protected void buildOnOffTiles(Texture textureSheet) {
 	  onOffTiles = new Sprite[1 * 2];
 	  for (int y = 0; y < 2; y++) {
-		  onOffTiles[y] = new Sprite(textureSheet, 0, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+		  onOffTiles[y] = new Sprite(textureSheet, 0, y * Entity.TILE_SIZE, Entity.TILE_SIZE, Entity.TILE_SIZE);
 	  }
   }
 
@@ -168,36 +171,39 @@ public class Entity
     this.dir = this.oldDir;
   }
 
-  public void render(float dt)
-  {
-	  movingTimer -= dt;
-	  animationTimer += 2.0f * dt;
-	  if (animationTimer >= 4.0f) animationTimer -= 4.0f;
-    Sprite tile = sprite;
-    
-    if(animTiles != null) {
-      tile = animTiles[(dir * 4) + (int)animationTimer];
-    } else if (onOffTiles != null) {
-    	tile = this.isOn ? onOffTiles[1] : onOffTiles[0];
-    }
-    
-    if(tile != null)
-    {
-      float targetX = x;
-      float targetY = y;
-      if (movingTimer > Constants.MovementTime/2.0f) {
-    	  targetX = Utils.lerp(this.oldX, this.tempX, (movingTimer-(Constants.MovementTime/2.0f)) * 2.0f * (1.0f/Constants.MovementTime));
-    	  targetY = Utils.lerp(this.oldY, this.tempY, (movingTimer-(Constants.MovementTime/2.0f)) * 2.0f * (1.0f/Constants.MovementTime));
-      }
-      else if (movingTimer > 0)
-      {
-    	  targetX = Utils.lerp(this.tempX, this.x, (movingTimer) * 2.0f * (1.0f/Constants.MovementTime));
-    	  targetY = Utils.lerp(this.tempY, this.y, (movingTimer) * 2.0f * (1.0f/Constants.MovementTime)); 
-      }
-      Utils.setScreenPosition(tile, targetX, targetY, 64, 64);
-      tile.draw(Assets.batch);
-    }
-  }
+	public void render(float dt) {
+		movingTimer -= dt;
+		animationTimer += 2.0f * dt;
+		if (animationTimer >= 4.0f)
+			animationTimer -= 4.0f;
+		Sprite tile = sprite;
+
+		if (animTiles != null) {
+			tile = animTiles[(dir * 4) + (int) animationTimer];
+		} else if (onOffTiles != null) {
+			tile = this.isOn ? onOffTiles[1] : onOffTiles[0];
+		}
+
+		if (tile != null) {
+			float targetX = x;
+			float targetY = y;
+			if (movingTimer > Constants.MovementTime / 2.0f) {
+				targetX = Utils.lerp(this.oldX, this.tempX,
+						(movingTimer - (Constants.MovementTime / 2.0f)) * 2.0f
+								* (1.0f / Constants.MovementTime));
+				targetY = Utils.lerp(this.oldY, this.tempY,
+						(movingTimer - (Constants.MovementTime / 2.0f)) * 2.0f
+								* (1.0f / Constants.MovementTime));
+			} else if (movingTimer > 0) {
+				targetX = Utils.lerp(this.tempX, this.x, (movingTimer) * 2.0f
+						* (1.0f / Constants.MovementTime));
+				targetY = Utils.lerp(this.tempY, this.y, (movingTimer) * 2.0f
+						* (1.0f / Constants.MovementTime));
+			}
+			Utils.setScreenPosition(tile, targetX, targetY, 64, 64);
+			tile.draw(Assets.batch);
+		}
+	}
 
   public boolean overlaps(Entity entity)
   {
