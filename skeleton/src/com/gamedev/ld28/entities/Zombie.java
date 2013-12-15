@@ -12,7 +12,7 @@ public class Zombie extends Entity {
 	@Override
 	public void takeAction(Entity.ACTIONS action) {
 		super.saveState();
-		super.moveStandard(action);
+		super.doAction(action);
 	}
 
 }
