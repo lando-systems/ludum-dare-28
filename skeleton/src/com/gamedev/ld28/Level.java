@@ -119,7 +119,7 @@ public class Level
     }
   }
 
-  public void render()
+  public void render(float dt)
   {
     switch(levelState)
     {
@@ -127,7 +127,7 @@ public class Level
         break;
       case 1://level playing
         for(Entity entity: entities)
-          entity.render();
+          entity.render(dt);
         break;
       case 2://level end
         break;

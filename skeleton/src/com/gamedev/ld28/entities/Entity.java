@@ -17,6 +17,7 @@ public class Entity
   protected Sprite sprite;
   protected Sprite[] animTiles;
   private int TILE_SIZE = 64;
+  private float animationTimer = 0f;
 
   public static enum ACTIONS
   {
@@ -116,11 +117,13 @@ public class Entity
     this.dir = this.oldDir;
   }
 
-  public void render()
+  public void render(float dt)
   {
+	  animationTimer += 2.0f * dt;
+	  if (animationTimer >= 4.0f) animationTimer -= 4.0f;
     Sprite tile = sprite;
     if(animTiles != null)
-      tile = animTiles[dir * 4];
+      tile = animTiles[(dir * 4) + (int)animationTimer];
     if(tile != null)
     {
       Utils.setScreenPosition(tile, x, y, 64, 64);
