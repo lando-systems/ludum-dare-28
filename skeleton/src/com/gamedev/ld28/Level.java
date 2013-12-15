@@ -8,6 +8,7 @@ import com.gamedev.ld28.entities.*;
 
 public class Level
 {
+	private String helpText = "Arrows move you and zombies. Escape will reset the level ";
 	private String[] mapData = new String[] {
 			"x x x x x x x x x x x x x x "+
 		    "x znx x - - - - - x x wsx x "+
@@ -187,6 +188,8 @@ public class Level
     Utils.drawShadowText(Assets.batch, "Level " + (currentLevel+1), Config.screenHalfWidth - 40, Config.screenHalfHeight - 70, 30,30, Color.GRAY, Utils.EStringJustify.RIGHT);
     Utils.drawShadowText(Assets.batch, "Lives 1", Config.screenHalfWidth - 40, Config.screenHalfHeight - 90, Color.GRAY, Utils.EStringJustify.RIGHT);
     Utils.drawShadowText(Assets.batch, mapDesc[currentLevel], Config.screenHalfWidth - 40, Config.screenHalfHeight - 120, 20,20, Color.GRAY, Utils.EStringJustify.RIGHT);
+    
+    Utils.drawShadowText(Assets.batch, helpText, Config.screenHalfWidth - 40, 0, 20,20, Color.GRAY, Utils.EStringJustify.RIGHT);
   }
   
 }

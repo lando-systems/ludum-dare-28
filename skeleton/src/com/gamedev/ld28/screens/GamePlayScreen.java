@@ -72,7 +72,8 @@ public class GamePlayScreen extends GameScreen
 
     if(Gdx.input.isKeyPressed(Keys.ESCAPE))
     {
-      Gdx.app.exit();
+      //Gdx.app.exit();
+    	currentLevel.resetLevel();
     }
 
     Entity.ACTIONS action = null;
