@@ -1,5 +1,6 @@
 package com.gamedev.ld28.entities;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.gamedev.ld28.Assets;
 import com.gamedev.ld28.utils.Constants;
@@ -14,6 +15,8 @@ public class Entity {
 	protected int oldY;
 	protected int oldDir;
 	protected Sprite sprite;
+	protected Sprite[] animTiles;
+	private int TILE_SIZE = 64;
 	
 	public static enum ACTIONS {
 		FORWARD, BACK, TURN_CCW, TURN_CW
@@ -23,7 +26,17 @@ public class Entity {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
-		sprite = new Sprite(Assets.zombie);
+		
+	}
+	
+	protected void buildAnim(Texture textureSheet)
+	{
+		animTiles = new Sprite[4 * 4]; 
+		for (int y = 0; y < 4; y++){
+			for (int x = 0; x < 4; x++){
+				animTiles[x + (y * 4)] = new Sprite(textureSheet, x*TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+			}
+		}
 	}
 	
 	public int getX() {
@@ -51,10 +64,10 @@ public class Entity {
 		switch (action) {
 		
 			case TURN_CW:
-				this.dir = (this.dir + 1) % 4;
+				this.dir ++;
 				break;
 			case TURN_CCW:
-				this.dir = (this.dir - 1) % 4;
+				this.dir --;
 				break;
 				
 			case BACK:
@@ -73,6 +86,8 @@ public class Entity {
 				break;
 				
 		}
+		if (dir < 0 ) dir += 4;
+		if (dir > 3 ) dir -= 4;
 	}
 	
 	public void revert() {
@@ -82,9 +97,16 @@ public class Entity {
 	}
 	
 	public void render(){
-		Utils.setScreenPosition(sprite, x, y, 64, 64);
 		
-		sprite.draw(Assets.batch);
+		Sprite tile = sprite;
+		if (animTiles != null){
+			tile = animTiles[dir * 4];
+		}
+		if (tile != null){
+			Utils.setScreenPosition(tile, x, y, 64, 64);
+		
+			tile.draw(Assets.batch);
+		}
 	}
 	
 }
