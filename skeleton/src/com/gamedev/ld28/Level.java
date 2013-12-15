@@ -467,7 +467,10 @@ public class Level {
 					}
 					if (eA instanceof Exit && eB instanceof Wizard) {
 						if (currentLevel >= mapData.length-1)
+						{
 							game.setScreen(game.screens.get("End"));
+							Utils.PlayMusic(Assets.endGameMusic);
+						}
 						else
 						{
 							currentLevel ++;

@@ -40,6 +40,7 @@ public class Assets {
 	public static TextureRegion[][] symbols;
 	
 	public static Music titleMusic;
+	public static Music endGameMusic;
 	
 	
 
@@ -99,6 +100,7 @@ public class Assets {
 		symbols = splitAndGet(spritesheet, 8, 8, 10, 31, 18, 1);
 		
 		titleMusic = Gdx.audio.newMusic(Gdx.files.internal("data/audio/day_of_chaos.mp3"));
+		endGameMusic = Gdx.audio.newMusic(Gdx.files.internal("data/audio/endgame.mp3"));
 	}
 
 	public static void dispose() {
