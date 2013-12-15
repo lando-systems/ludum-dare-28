@@ -48,6 +48,15 @@ public class Entity {
 	public int getDir() {
 		return this.dir;
 	}
+	public int getOldX() {
+		return this.oldX;
+	}
+	public int getOldY() {
+		return this.oldY;
+	}
+	public int getOldDir() {
+		return this.oldDir;
+	}
 	
 	
 	public void takeAction(Entity.ACTIONS action) {
@@ -108,5 +117,24 @@ public class Entity {
 			tile.draw(Assets.batch);
 		}
 	}
+	
+	public boolean overlaps(Entity entity) {
+		if (this.x == entity.getX() &&
+			this.y == entity.getY()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean passedThrough(Entity entity) {
+		if (this.oldX == entity.getOldX() &&
+			this.oldY == entity.getOldY()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	
 }

@@ -180,8 +180,8 @@ public class GamePlayScreen extends GameScreen
 				eA = this.entities.get(i);
 				for (j = i + 1; j < this.entities.size(); j++) {
 					eB = this.entities.get(j);
-					if (eA.getX() == eB.getX() &&
-						eA.getY() == eB.getY()) {
+					if (eA.overlaps(eB) ||
+						eA.passedThrough(eB)) {
 						eA.revert();
 						eB.revert();
 						isValid = false;
