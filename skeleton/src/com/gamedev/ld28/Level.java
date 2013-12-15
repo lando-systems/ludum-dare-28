@@ -8,7 +8,7 @@ import com.gamedev.ld28.entities.*;
 import com.gamedev.ld28.entities.Entity.ACTIONS;
 
 public class Level {
-	private String helpText = "WASD move you and zombies. Escape will reset the level ";
+	private String helpText = "WASD moves you and zombies. Escape will reset the level ";
 	private String[] mapData = new String[] {
 			// Level 1
 			          "x x x x x x x x x x x x x x " 
@@ -112,8 +112,8 @@ public class Level {
 					+ "x x x q x x x x x x x x x x "
 					+ "x x x dax x x x x x x x x x "
 					+ "x x - - x - - - x x x x x x "
-					+ "x x wn- x zn- o x x x x x x "
-					+ "x x x x x - - sax x x x x x "
+					+ "x x wn- x zn- - x x x x x x "
+					+ "x x x x x - o sax x x x x x "
 					+ "x x x x x x x x x x x x x x "
 					+ "x x x x x x x x x x x x x x "
 					+ "x x x x x x x x x x x x x x ",
@@ -165,37 +165,36 @@ public class Level {
 	protected int width;
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
-
-	private int currentLevel = 0;
+	private int currentLevel = 8;
 
 	public Level(int level) {
 
 		
-		 // DEBUG LEVEL
-		 mapData[0] =
-		 "x x x x x x x x x x x x x x "+
-		 "x - - - - - - - - - - - - x "+
-		 "x - - - - - - - - - - - - x "+
-		 "x - - - - - - - - - - - - x "+
-		 "x - - - - - - wn- - - - - x "+
-		 "x - - - - - - - - - - - - x "+
-		 "x - - - - - - - - - - - - x "+
-		 "x - - - - - - - - - - - - x "+
-		 "x - - - - - - - - - - - - x "+
-		 "x x x x x x x x x x x x x x ";
-		 
-		 // DEBUG LEVEL
-		 mapData[0] =
-				 "x x x x x x x x x x x x x x "+
-				 "x - - - - - - - - - - - - x "+
-				 "x - - sa- - - - - - - - - x "+
-				 "x - - zn- - - wn- - - - - x "+
-				 "x - - - - - - - - - - - - x "+
-				 "x - - - - - - - - - - - - x "+
-				 "x - - da- da- - - - - - - x "+
-				 "x - - zn- - - zn- - - - - x "+
-				 "x - - - - zn- - - - - - - x "+
-				 "x x x x x x x x x x x x x x ";
+//		 // DEBUG LEVEL
+//		 mapData[0] =
+//		 "x x x x x x x x x x x x x x "+
+//		 "x - - - - - - - - - - - - x "+
+//		 "x - - - - - - - - - - - - x "+
+//		 "x - - - - - - - - - - - - x "+
+//		 "x - - - - - - wn- - - - - x "+
+//		 "x - - - - - - - - - - - - x "+
+//		 "x - - - - - - - - - - - - x "+
+//		 "x - - - - - - - - - - - - x "+
+//		 "x - - - - - - - - - - - - x "+
+//		 "x x x x x x x x x x x x x x ";
+//		 
+//		 // DEBUG LEVEL
+//		 mapData[0] =
+//				 "x x x x x x x x x x x x x x "+
+//				 "x - - - - - - - - - - - - x "+
+//				 "x - - sa- - - - - - - - - x "+
+//				 "x - - zn- - - wn- - - - - x "+
+//				 "x - - - - - - - - - - - - x "+
+//				 "x - - - - - - - - - - - - x "+
+//				 "x - - da- da- - - - - - - x "+
+//				 "x - - zn- - - zn- - - - - x "+
+//				 "x - - - - zn- - - - - - - x "+
+//				 "x x x x x x x x x x x x x x ";
 		 
 		
 		
@@ -462,10 +461,10 @@ public class Level {
 				Color.GRAY, Utils.EStringJustify.RIGHT);
 		Utils.drawShadowText(Assets.batch, mapDesc[currentLevel],
 				Config.screenHalfWidth - 40, Config.screenHalfHeight - 120, 20,
-				20, Color.GRAY, Utils.EStringJustify.RIGHT);
+				20, Color.WHITE, Utils.EStringJustify.RIGHT);
 
 		Utils.drawShadowText(Assets.batch, helpText,
-				Config.screenHalfWidth - 40, 0, 20, 20, Color.GRAY,
+				Config.screenHalfWidth - 40, 0, 20, 20, Color.YELLOW,
 				Utils.EStringJustify.RIGHT);
 	}
 

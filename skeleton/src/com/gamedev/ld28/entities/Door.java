@@ -39,6 +39,8 @@ public class Door extends Entity {
 			this.isOn = true;
 			this.walkable = true;
 		}
+		Assets.doorOpenSound.play();
+		
 	}
 	
 	public void close() {
@@ -56,12 +58,15 @@ public class Door extends Entity {
 			pE = this.pairedEntities.get(i);
 			if (pE instanceof Switch) {
 				if (!pE.isOn) {
+					if (this.isOn) Assets.doorCloseSound.play();
 					this.isOn = false;
 					this.walkable = false;
+					
 					return;
 				}
 			}
 		}
+		
 	}
 	
 }

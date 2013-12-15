@@ -59,7 +59,7 @@ public class TitleScreen extends GameScreen {
 		sprite.draw(Assets.batch);
 		Assets.batch.end();
 		
-		Utils.drawText(Config.title, 0, 300, 48, 48, Color.RED, Utils.EStringJustify.CENTER);
+		Utils.drawText(Config.title, 0, 300, 40, 40, Color.RED, Utils.EStringJustify.CENTER);
 		if (flashTimer < 1.0f){
 			Utils.drawText("Click to Start", 0, 0, 48, 48, Color.RED, Utils.EStringJustify.CENTER);
 		}
