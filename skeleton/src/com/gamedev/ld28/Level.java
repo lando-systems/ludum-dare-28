@@ -207,7 +207,7 @@ public class Level {
 	protected int width;
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
-	private int currentLevel = 12;
+	private int currentLevel = 0;
 	private Skeleton game;
 	
 	public Level(int level, Skeleton game) {
