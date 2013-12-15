@@ -165,37 +165,40 @@ public class Level {
 	protected int width;
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
-	private int currentLevel = 10;
+
+	private int currentLevel = 0;
 
 	public Level(int level) {
 
-		// // DEBUG LEVEL
-		// mapData[0] =
-		// "x x x x x x x x x x x x x x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x - - - - - zeo sa- - - - x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x - - - - - - weda- - - - x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x x x x x x x x x x x x x x ";
-		//
-		// // DEBUG LEVEL
-		// mapData[0] =
-		// "x x x x x x x x x x x x x x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x - - - - - - wn- - - - - x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x - - - - - - - - - - - - x "+
-		// "x x x x x x x x x x x x x x ";
-		//
-		//
+		
+		 // DEBUG LEVEL
+		 mapData[0] =
+		 "x x x x x x x x x x x x x x "+
+		 "x - - - - - - - - - - - - x "+
+		 "x - - - - - - - - - - - - x "+
+		 "x - - - - - - - - - - - - x "+
+		 "x - - - - - - wn- - - - - x "+
+		 "x - - - - - - - - - - - - x "+
+		 "x - - - - - - - - - - - - x "+
+		 "x - - - - - - - - - - - - x "+
+		 "x - - - - - - - - - - - - x "+
+		 "x x x x x x x x x x x x x x ";
+		 
+		 // DEBUG LEVEL
+		 mapData[0] =
+				 "x x x x x x x x x x x x x x "+
+				 "x - - - - - - - - - - - - x "+
+				 "x - - sa- - - - - - - - - x "+
+				 "x - - zn- - - wn- - - - - x "+
+				 "x - - - - - - - - - - - - x "+
+				 "x - - - - - - - - - - - - x "+
+				 "x - - da- da- - - - - - - x "+
+				 "x - - zn- - - zn- - - - - x "+
+				 "x - - - - zn- - - - - - - x "+
+				 "x x x x x x x x x x x x x x ";
+		 
+		
+		
 
 		// currentLevel = level;
 		resetLevel();
@@ -318,8 +321,21 @@ public class Level {
 		}
 	}
 
-	public Entity entityAtPosition(int x, int y) {
+	public Entity entityAtOldPosition(int x, int y) {
 		for (int i = 0; i < entities.size(); i++)
+			if (entities.get(i).getOldX() == x
+					&& entities.get(i).getOldY() == y
+					&& (entities.get(i) instanceof Zombie || 
+						entities.get(i) instanceof Barrel || 
+						entities.get(i) instanceof Wizard))
+				return entities.get(i);
+		return null;
+	}
+	
+	public Entity entityAtPosition(int x, int y) {
+		Entity e;
+		for (int i = 0; i < entities.size(); i++)
+			
 			if (entities.get(i).getOldX() == x
 					&& entities.get(i).getOldY() == y
 					&& (entities.get(i) instanceof Zombie || 
