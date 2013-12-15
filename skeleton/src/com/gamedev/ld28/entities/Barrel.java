@@ -10,6 +10,7 @@ public class Barrel extends Entity
   public Barrel(Level level, int x, int y)
   {
     super(level, x, y, Constants.NORTH);
+    this.externallyMovable = true;
     sprite = new Sprite(Assets.barrel);
   }
 

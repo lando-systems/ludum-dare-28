@@ -14,7 +14,8 @@ public class Entity
   protected int oldX;
   protected int oldY;
   protected int oldDir;
-
+  public boolean shouldRevert;
+  
   public boolean walkable;
   public boolean externallyMovable;
   protected Sprite sprite;
@@ -35,6 +36,7 @@ public class Entity
     this.x = x;
     this.y = y;
     this.dir = dir;
+    this.shouldRevert = false;
 
     walkable = false;
     externallyMovable = false;
@@ -125,6 +127,7 @@ public class Entity
     this.x = this.oldX;
     this.y = this.oldY;
     this.dir = this.oldDir;
+    this.shouldRevert = false;
   }
 
   public void render(float dt)
@@ -160,4 +163,3 @@ public class Entity
       return false;
   }
 }
-

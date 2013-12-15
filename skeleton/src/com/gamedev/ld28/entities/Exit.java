@@ -9,6 +9,7 @@ public class Exit extends Entity {
 
 	public Exit(Level level, int x, int y) {
 		super(level, x, y, Constants.NORTH);
+		this.walkable = true;
 		sprite = new Sprite(Assets.exit);
 	}
 	

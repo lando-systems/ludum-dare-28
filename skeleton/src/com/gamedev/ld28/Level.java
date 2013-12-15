@@ -101,7 +101,7 @@ public class Level
     int i, j;
     Entity eA, eB;
     boolean isValid = false;
-    validityLoop: while(!isValid)
+    while(!isValid)
     {
       isValid = true;
       for (i = 0; i < this.entities.size(); i++)
@@ -110,13 +110,18 @@ public class Level
         for (j = i + 1; j < this.entities.size(); j++)
         {
           eB = this.entities.get(j);
-          if (eA.overlaps(eB) || eA.passedThrough(eB))
+          if ((eA.overlaps(eB) || eA.passedThrough(eB)) && !(eA.walkable || eB.walkable))
           {
-            eA.revert();
-            eB.revert();
-            isValid = false;
-            continue validityLoop;
+        	  eA.shouldRevert = true;
+        	  eB.shouldRevert = true;
+              isValid = false;
           }
+        }
+        if(!isValid)
+        {
+        	for(Entity entity : entities)
+        		if(entity.shouldRevert) entity.revert();
+        	continue;
         }
       }
     }
@@ -138,7 +143,6 @@ public class Level
     Utils.drawShadowText(Assets.batch, "Level 1", Config.screenHalfWidth - 40, Config.screenHalfHeight - 70, 30,30, Color.GRAY, Utils.EStringJustify.RIGHT);
     Utils.drawShadowText(Assets.batch, "Lives 1", Config.screenHalfWidth - 40, Config.screenHalfHeight - 90, Color.GRAY, Utils.EStringJustify.RIGHT);
     Utils.drawShadowText(Assets.batch, "This is a really long sentance that needs to be wrapped", Config.screenHalfWidth - 40, Config.screenHalfHeight - 120, 20,20, Color.GRAY, Utils.EStringJustify.RIGHT);
-
   }
   
 }
