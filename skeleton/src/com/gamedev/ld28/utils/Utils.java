@@ -13,7 +13,7 @@ public class Utils {
 	private static final String symbols = ",.!?'\"-+=/\\%()<>:;";
 	public static enum EStringJustify { LEFT, CENTER, RIGHT };
 	private static boolean[] lastInput = new boolean[256];
-	private static int pixelsBetweenCharacters = 2; // spacing between characters (pixels)
+	private static int pixelsBetweenCharacters = 5; // spacing between characters (pixels)
 	
 	public static void updateInput(){
 		for (int i =0; i < 256; i++){
@@ -39,31 +39,49 @@ public class Utils {
 	public static void drawText(SpriteBatch batch, String text, float x, float y, Color color, EStringJustify justify) {
 		drawText(batch, text, x, y, Config.textWidth, Config.textHeight, color, justify);
 	}
+	
+	public static void drawShadowText(SpriteBatch batch, String text, float x, float y, Color color, EStringJustify justify) {
+		drawText(batch, text, x+2, y-2, Config.textWidth, Config.textHeight, Color.BLACK, justify);
+		drawText(batch, text, x, y, Config.textWidth, Config.textHeight, color, justify);
+	}
+	
+	public static void drawShadowText(SpriteBatch batch, String text, float x, float y, int w, int h, Color color, EStringJustify justify) {
+		drawText(batch, text, x+2, y-2, w, h, Color.BLACK, justify, true);
+		drawText(batch, text, x, y, w, h, color, justify, true);	
+	}
 
-//	public static void drawText(SpriteBatch batch, String text, float x, float y, Color color, EStringJustify justify, boolean wrap) {
-//		if(wrap)
-//		{
-//			//If there is more text than will fit on one line
-//			if(text.length() * (Config.textWidth + pixelsBetweenCharacters) > batch.g)
-//			{
-//				int breakpoint = 0;
-//				int originalLength = text.length();
-//				
-//				while(breakpoint != -1 && breakpoint < originalLength)
-//				{
-//					breakpoint = text.lastIndexOf(' ', Config.textWidth);
-//					//TODO:   build this up into a single print
-//					drawText(batch, text.substring(0, breakpoint), x, y, Config.textWidth, Config.textHeight, color, justify);
-//					y = y - Config.textHeight - pixelsBetweenCharacters;
-//					text = text.substring(breakpoint + 1);
-//				}
-//			}
-//		}
-//		else{
-//			//Just draw as much of the text as will fit
-//			drawText(batch, text, x, y, Config.textWidth, Config.textHeight, color, justify);
-//		}
-//	}
+	private static int wrapLength = 200;
+	public static void drawText(SpriteBatch batch, String text, float x, float y, int w, int h, Color color, EStringJustify justify, boolean wrap) {
+		if(wrap)
+		{
+			//If there is more text than will fit on one line
+			if(text.length() * (Config.textWidth + pixelsBetweenCharacters) > wrapLength)
+			{
+				int breakpoint = 0;
+				int originalLength = text.length();
+				int charsInSize = wrapLength/Config.textWidth;
+				while(breakpoint != -1 && breakpoint < originalLength)
+				{
+					breakpoint = text.lastIndexOf(' ', charsInSize);
+					if (breakpoint == -1)
+					{
+						drawText(batch, text, x, y, w, h, color, justify);
+					}
+					else{
+						drawText(batch, text.substring(0, breakpoint), x, y, w, h, color, justify);
+						y = y - Config.textHeight - pixelsBetweenCharacters;
+						text = text.substring(breakpoint + 1);
+					}
+				}
+			}else {
+				drawText(batch, text, x, y, w, h, color, justify);
+			}
+		}
+		else{
+			//Just draw as much of the text as will fit
+			drawText(batch, text, x, y, Config.textWidth, Config.textHeight, color, justify);
+		}
+	}
 
 	public static void drawText(SpriteBatch batch, String text, float x, float y, int w, int h, Color color, EStringJustify justify) {
 		text = text.toUpperCase();
