@@ -116,6 +116,18 @@ public class Level {
 					+ "x x x x x - - sax x x x x x "
 					+ "x x x x x x x x x x x x x x "
 					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x ",
+					
+					// Level 10
+			          "x x x x x x x x x x x x x x " 
+					+ "x x x x x x x x x x x x x x "
+					+ "x x x q x x x x x x x x x x "
+					+ "x x x dax x x x x x x x x x "
+					+ "x x - - x - - r x x x x x x "
+					+ "x x wn- x zn- - x x x x x x "
+					+ "x x x x x - - sax x x x x x "
+					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x "
 					+ "x x x x x x x x x x x x x x "
 
 	};
@@ -129,7 +141,8 @@ public class Level {
 	/* 6 */"How did he get there ",
 	/* 7 */"Close quarters ",
 	/* 8 */"What does this do ",
-	/* 9 */"If you liked it then you should have put a barrel on it "};
+	/* 9 */"If you liked it then you should have put a barrel on it ",
+	/*10 */"Now we are out of sync "};
 
 	protected Wizard player;
 	protected Exit exit;
