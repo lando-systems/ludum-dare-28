@@ -23,6 +23,7 @@ public class Assets {
 	public static Texture stone;
 	public static Texture barrel;
 	public static Texture exit;
+	public static Texture teleport;
 
 
 	public static TextureRegion[][] letters;
@@ -58,6 +59,9 @@ public class Assets {
 		
 		barrel = new Texture(Gdx.files.internal("data/barrel.png"));
 		barrel.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		teleport = new Texture(Gdx.files.internal("data/teleport.png"));
+		teleport.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		gameBoard = new Texture(Gdx.files.internal("data/gamebackground.png"));
 		gameBoard.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);

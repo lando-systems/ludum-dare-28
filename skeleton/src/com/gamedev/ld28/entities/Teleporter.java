@@ -14,7 +14,7 @@ public class Teleporter extends Entity
         {
 		super(level, x, y, Constants.NORTH);
                 this.walkable = true;
-		sprite = new Sprite(Assets.stone);
+		sprite = new Sprite(Assets.teleport);
                 this.id = id;
 	}
 
