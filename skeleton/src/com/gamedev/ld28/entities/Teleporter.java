@@ -23,7 +23,7 @@ public class Teleporter extends Entity
     		return;
     	}
     	Teleporter t = (Teleporter)this.pairedEntities.get(0);
-    	
+    	Assets.teleportSound.play();
     	if(level.entityAtOldPosition(t.getX(),t.getY()) == null) 
     		e.moveTo(t.getX(),t.getY());
     }

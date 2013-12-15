@@ -32,6 +32,7 @@ public class Assets {
 	public static Texture rotator;
 	
 	public static Sound doorCloseSound;
+	public static Sound teleportSound;
 	public static Sound doorOpenSound;
 
 
@@ -94,6 +95,7 @@ public class Assets {
 		
 		doorOpenSound = Gdx.audio.newSound(Gdx.files.internal("data/audio/door_open.wav"));
 		doorCloseSound = Gdx.audio.newSound(Gdx.files.internal("data/audio/door_close.wav"));
+		teleportSound = Gdx.audio.newSound(Gdx.files.internal("data/audio/teleport.wav"));
 		
 		letters = splitAndGet(spritesheet, 8, 8, 0, 30, 26, 1);
 		digits  = splitAndGet(spritesheet, 8, 8, 0, 31, 10, 1);
