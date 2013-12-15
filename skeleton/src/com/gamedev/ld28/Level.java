@@ -164,7 +164,20 @@ public class Level {
 					+ "x ?g- - - x zsx - - x x x x "
 					+ "x x x - - x - x - - x ?c- x "
 					+ "x wn?a- - x ?bx - - x ?f?hx "
-					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x ",
+					
+
+					// Level 13
+			          "x x x x x x x x x x x x x x " 
+					+ "x - - - - - - - - - - - - x "
+					+ "x - - - - - - - - - - zs- x "
+					+ "x q - - - - - - - - x - - x "
+					+ "x ddx - - o - - sc- x - - x "
+					+ "x dcx - - o - x sa- - - - x "
+					+ "x dbx - - o - - sb- - - - x "
+					+ "x dax - - o - - sd- - - - x "
+					+ "x wnx - - - - - - - - - - x "
+					+ "x x x x x x x x x x x x x x ",
 
 	};
 
@@ -181,7 +194,9 @@ public class Level {
 	/*10 */"Now we are out of sync ",
 	/*11 */"Get them back in sync ",
 	/*12 */"conga line ",
-	/*12 */"good luck yo "
+	/*13 */"good luck yo ",
+	/*14 */"switches n doors "
+
 	};
 
 	protected Wizard player;
@@ -192,7 +207,7 @@ public class Level {
 	protected int width;
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
-	private int currentLevel = 11;
+	private int currentLevel = 12;
 	private Skeleton game;
 	
 	public Level(int level, Skeleton game) {
