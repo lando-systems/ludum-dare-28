@@ -204,6 +204,8 @@ public class Level {
 					+ "x x x x x x x x x x x x x x ",
 					
 
+					Constants.LEVEL_LONGHALLS,
+					
 					// Level 13
 			          "x x x x x x x x x x x x x x " 
 					+ "x - - - - - - - - - - - - x "
@@ -216,6 +218,8 @@ public class Level {
 					+ "x wnx - - - - - - - - - - x "
 					+ "x x x x x x x x x x x x x x ",
 					
+					
+			
 					// Level 14
 			          "x x x x x x x x x x x x x x " 
 					+ "x - - - - - - - - - - - - x "
@@ -226,21 +230,7 @@ public class Level {
 					+ "x dbx - - - - - sb- - - - x "
 					+ "x dax - - - - - sd- - - - x "
 					+ "x wnx - - - - - - - - - - x "
-					+ "x x x x x x x x x x x x x x ",
-					
-					// Level 14
-					  "x x x x x x x x x x x x x x " 
-					+ "x - - - - - - - - - - - - x "
-					+ "x - - - - - - - - - - zs- x "
-					+ "x q - - - - - - - - x - - x "
-					+ "x ddx - - - - - sc- x - - x "
-					+ "x dcx - - - - x sa- - - - x "
-					+ "x dbx - - - - - sb- - - - x "
-					+ "x dax - - - - - sd- - - - x "
-					+ "x wnx - - - - - - - - - - x "
-					+ "x x x x x x x x x x x x x x ",
-					
-					Constants.LEVEL_LONGHALLS
+					+ "x x x x x x x x x x x x x x "
 
 	};
 
@@ -259,10 +249,10 @@ public class Level {
 	/*11 */"Get them back in sync ",
 	/*12 */"conga line ",
 	/*13 */"good luck yo ",
+	"Long hallways, many doors ",
 	/*14 */"switches n doors ",
-	/*   */"Wait a minute.  This place looks familiar - but empty ",
-	/*   */"Wait a minute.  This place looks familiar - but empty ",
-		"Long hallways, many doors "
+	/*   */"Wait a minute.  This place looks familiar - but empty "
+		   
 	
 
 	};
@@ -436,7 +426,6 @@ public class Level {
 	}
 	
 	public Entity entityAtPosition(int x, int y) {
-		Entity e;
 		for (int i = 0; i < entities.size(); i++)
 			
 			if (entities.get(i).getOldX() == x
