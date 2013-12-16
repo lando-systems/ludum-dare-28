@@ -12,4 +12,18 @@ public class Constants
   public static final char DOOR = 'd';
   public static final char SWITCH = 's';
   
+  public static final String LEVEL_LONGHALLS = 
+		  
+		  "x x x x x x x x x x x x x x " +
+		  "x - - dc- x x x - - - - r x " +
+		  "x dbx x - x x x - x sdx - x " +
+		  "x - x x ddx x x - sczssa- x " +
+		  "x - x - - - x x - x sbx - x " +
+		  "x - x - - - x x - - - - - x " +
+		  "x - x wn- - x x x x x x x x " +
+		  "x - x x x x x x x x x x x x " +
+		  "x - da- - - - - - - - ddq x " +
+		  "x x x x x x x x x x x x x x " ;
+  
+  
 }

@@ -1,5 +1,7 @@
 package com.gamedev.ld28.entities;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.gamedev.ld28.Assets;
 import com.gamedev.ld28.Level;
@@ -24,8 +26,21 @@ public class Teleporter extends Entity
     	}
     	Teleporter t = (Teleporter)this.pairedEntities.get(0);
     	Assets.teleportSound.play();
-    	if(level.entityAtOldPosition(t.getX(),t.getY()) == null) 
-    		e.moveTo(t.getX(),t.getY());
+//    	if(level.entityAtOldPosition(t.getX(),t.getY()) == null) 
+//    		e.moveTo(t.getX(),t.getY());
+    	ArrayList<Entity> entitiesOnOtherTeleporter = level.getEntitesAtPosition(t.getX(), t.getY());
+    	Entity otherEntity;
+    	// For each
+    	for (int i = 0; i < entitiesOnOtherTeleporter.size(); i++) {
+    		otherEntity = entitiesOnOtherTeleporter.get(i);
+    		if (this != otherEntity &&
+    			!otherEntity.walkable) {
+    			// Something unwalkable is currently on the other Teleporter
+    			return;
+    		}	
+    	}
+    	// Move the entity
+    	e.moveTo(t.getX(), t.getY());
     }
         
     @Override

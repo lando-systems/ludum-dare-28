@@ -10,11 +10,35 @@ import com.gamedev.ld28.entities.Entity.ACTIONS;
 public class Level {
 	private String helpText = "WASD moves you and zombies. Escape will reset the level ";
 	private String[] mapData = new String[] {
+			
+//			 // EMPTY TEMPLATE
+//			          "x x x x x x x x x x x x x x " 
+//					+ "x wn- - - - - - - - - - - x "
+//					+ "x - - - - - - - - - - - - x "
+//					+ "x - - - - - - - - - - - - x "
+//					+ "x - - - - - - - - - - - - x "
+//					+ "x - - - - - - - - - - - - x "
+//					+ "x - - - - - - - - - - - - x "
+//					+ "x - - - - - - - - - - - - x "
+//					+ "x - - - - - - - - - - - - x "
+//					+ "x x x x x x x x x x x x x x ",
+//			// ALL STONE		
+//					  "x x x x x x x x x x x x x x " 
+//					+ "x x x x x x x x x x x x x x "
+//					+ "x x x x x x x x x x x x x x "
+//					+ "x x x x x x x x x x x x x x "
+//					+ "x x x x x x x x x x x x x x "
+//					+ "x x x x x x x x x x x x x x "
+//					+ "x x x x x x x x x x x x x x "
+//					+ "x x x x x x x x x x x x x x "
+//					+ "x x x x x x x x x x x x x x "
+//					+ "x x x x x x x x x x x x x x ",
+			
 			// Level 1
 			          "x x x x x x x x x x x x x x " 
-					+ "x znx x - - - s - x x wsx x "
+					+ "x znx x - dg- sg- x x wsx x "
 					+ "x - x - zs- o - - x x - x x "
-					+ "x - ?a- - - - ze- x x - x x "
+					+ "x - ?a- r - - ze- x x - x x "
 					+ "x - - o - zw- - - x x - x x "
 					+ "x x zs- x - - ?a- x x - x x "
 					+ "x x x x x x x x x x x - x x "
@@ -82,6 +106,19 @@ public class Level {
 					+ "x - - zw- - - - zw- - ?a- x "
 					+ "x x x x x x x x x x x x x x ",
 
+			// Conga Line Teleporter		
+					  "x x x x x x x x x x x x x x " 
+					+ "x we- zezezeze- - - - ?a- x "
+					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x "
+					+ "x x x x x x x x x x x x x x "
+					+ "x - ?a- - - - - - - - q - x "
+					+ "x x x x x x x x x x x x x x ",
+					
+					
 			// Level 7
 			          "x x x x x x x x x x x x x x " 
 					+ "x x x x x x x x x x x x x x "
@@ -106,7 +143,7 @@ public class Level {
 					+ "x x x x x x x x x x x x x x "
 					+ "x x x x x x x x x x x x x x ",
 					
-					// Level 9
+			// Level 9
 			          "x x x x x x x x x x x x x x " 
 					+ "x x x x x x x x x x x x x x "
 					+ "x x x q x x x x x x x x x x "
@@ -178,6 +215,32 @@ public class Level {
 					+ "x dax - - o - - sd- - - - x "
 					+ "x wnx - - - - - - - - - - x "
 					+ "x x x x x x x x x x x x x x ",
+					
+					// Level 14
+			          "x x x x x x x x x x x x x x " 
+					+ "x - - - - - - - - - - - - x "
+					+ "x - - - - - - - - - - zs- x "
+					+ "x q - - - - - - - - x - - x "
+					+ "x ddx - - - - - sc- x - - x "
+					+ "x dcx - - - - x sa- - - - x "
+					+ "x dbx - - - - - sb- - - - x "
+					+ "x dax - - - - - sd- - - - x "
+					+ "x wnx - - - - - - - - - - x "
+					+ "x x x x x x x x x x x x x x ",
+					
+					// Level 14
+					  "x x x x x x x x x x x x x x " 
+					+ "x - - - - - - - - - - - - x "
+					+ "x - - - - - - - - - - zs- x "
+					+ "x q - - - - - - - - x - - x "
+					+ "x ddx - - - - - sc- x - - x "
+					+ "x dcx - - - - x sa- - - - x "
+					+ "x dbx - - - - - sb- - - - x "
+					+ "x dax - - - - - sd- - - - x "
+					+ "x wnx - - - - - - - - - - x "
+					+ "x x x x x x x x x x x x x x ",
+					
+					Constants.LEVEL_LONGHALLS
 
 	};
 
@@ -188,6 +251,7 @@ public class Level {
 	/* 4 */"You are not strong enough to move those barrels on your own ",
 	/* 5 */"This one you can get stuck on ",
 	/* 6 */"How did he get there ",
+	/* - */"Hey! Get out of my way! ",
 	/* 7 */"Close quarters ",
 	/* 8 */"What does this do ",
 	/* 9 */"If you liked it then you should have put a barrel on it ",
@@ -195,7 +259,11 @@ public class Level {
 	/*11 */"Get them back in sync ",
 	/*12 */"conga line ",
 	/*13 */"good luck yo ",
-	/*14 */"switches n doors "
+	/*14 */"switches n doors ",
+	/*   */"Wait a minute.  This place looks familiar - but empty ",
+	/*   */"Wait a minute.  This place looks familiar - but empty ",
+		"Long hallways, many doors "
+	
 
 	};
 
@@ -207,7 +275,9 @@ public class Level {
 	protected int width;
 	protected int height;
 	protected int levelState; // 0 = begin, 1 = playing, 2 = end
+
 	private int currentLevel = 0;
+
 	private Skeleton game;
 	
 	public Level(int level, Skeleton game) {
@@ -225,22 +295,11 @@ public class Level {
 //		 "x - - - - - - - - - - - - x "+
 //		 "x - - - - - - - - - - - - x "+
 //		 "x x x x x x x x x x x x x x ";
-//		 
-//		 // DEBUG LEVEL
-//		 mapData[0] =
-//				 "x x x x x x x x x x x x x x "+
-//				 "x - - - - - - - - - - - - x "+
-//				 "x - - - - - - - - - zesb- x "+
-//				 "x - - - x - x wn- - - - - x "+
-//				 "x - - x x dax x - - - - - x "+
-//				 "x - - - dasadbzw- - - - - x "+
-//				 "x - - x x dax x - - - - - x "+
-//				 "x - - - x - x - - - - - - x "+
-//				 "x - - - - - - - - - - - - x "+
-//				 "x x x x x x x x x x x x x x ";
-//		 
-		
-		
+////		 
+//		 mapData[0] = Constants.LEVEL_ICERINK;
+		 
+//		
+//		
 
 		// currentLevel = level;
 		resetLevel();
@@ -248,6 +307,7 @@ public class Level {
 	}
 
 	public void resetLevel() {
+		System.out.println("resetLevel()");
 		entities = new ArrayList<Entity>();
 		movingObjects = new ArrayList<Entity>();
 		levelState = 1; // should be 0, but is just auto 1 for now until we have
