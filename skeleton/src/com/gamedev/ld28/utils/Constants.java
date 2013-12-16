@@ -25,5 +25,17 @@ public class Constants
 		  "x - da- - - - - - - - ddq x " +
 		  "x x x x x x x x x x x x x x " ;
   
+  public static final String LEVEL_FOUR_SWITCHES = 
+		  
+		  "x x x x x x x x x x x x x x " +
+		  "x sa- - - x x - - r x x sax " +
+		  "x - x x x x x x x - sax - x " +
+		  "x - x x x x x x x - x x - x " +
+		  "x - x x - r - zwzwzwzw- wwx " +
+		  "x - - - - x - x x x - x x x " +
+		  "x x x x x - r x sa- - - - x " +
+		  "x q - x x x x x x x x x - x " +
+		  "x - - da- - - - - - - - - x " +
+		  "x x x x x x x x x x x x x x " ;
   
 }
