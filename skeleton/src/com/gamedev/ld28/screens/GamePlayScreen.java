@@ -53,7 +53,7 @@ public class GamePlayScreen extends GameScreen
 	    if(Utils.isKeyJustPressed(Keys.D)) action = Entity.ACTIONS.TURN_CW;
     }
     if (action != null) {
-    	System.out.println("action: "+action.toString());
+    	//System.out.println("action: "+action.toString());
     }
    
     if (action == Entity.ACTIONS.FORWARD || action == Entity.ACTIONS.BACK) keyTimer = Constants.MovementTime;
