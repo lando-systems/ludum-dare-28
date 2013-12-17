@@ -239,7 +239,7 @@ public class Level {
 	/* 2 */"Oh noes there is a zombie in your way ",
 	/* 3 */"Now there are two zombies in your way ",
 	/* 4 */"You are not strong enough to move those barrels on your own ",
-	/* 5 */"This one you can get stuck on ",
+	/* 5 */"This one you can get stuck on hit Escape to restart ",
 	/* 6 */"How did he get there ",
 	/* - */"Hey! Get out of my way! ",
 	/* 7 */"Close quarters ",
@@ -511,7 +511,7 @@ public class Level {
 						}
 					}
 					if (eA instanceof Rotater && (eB.getX() != eB.getOldX() || eB.getY() != eB.getOldY())) {
-						//TODO: add sounds here?
+						Assets.rotate.play();
 						eB.takeAction(ACTIONS.TURN_CW);
 					}
 					if (eA instanceof Exit && eB instanceof Wizard) {
@@ -524,6 +524,7 @@ public class Level {
 						{
 							currentLevel ++;
 							resetLevel();
+							Assets.gameWon.play();
 						}
 						return;
 					}
@@ -572,8 +573,8 @@ public class Level {
 				Config.screenHalfWidth - 40, Config.screenHalfHeight - 90,
 				Color.GRAY, Utils.EStringJustify.RIGHT);
 		Utils.drawShadowText(Assets.batch, mapDesc[currentLevel],
-				Config.screenHalfWidth - 40, Config.screenHalfHeight - 120, 20,
-				20, Color.WHITE, Utils.EStringJustify.RIGHT);
+				Config.screenHalfWidth - 40, Config.screenHalfHeight - 130, 20,
+				20, Color.GREEN, Utils.EStringJustify.RIGHT);
 
 		Utils.drawShadowText(Assets.batch, helpText,
 				Config.screenHalfWidth - 40, 0, 20, 20, Color.YELLOW,

@@ -34,6 +34,8 @@ public class Assets {
 	public static Sound doorCloseSound;
 	public static Sound teleportSound;
 	public static Sound doorOpenSound;
+	public static Sound gameWon;
+	public static Sound rotate;
 
 
 	public static TextureRegion[][] letters;
@@ -96,6 +98,8 @@ public class Assets {
 		doorOpenSound = Gdx.audio.newSound(Gdx.files.internal("data/audio/door_open.wav"));
 		doorCloseSound = Gdx.audio.newSound(Gdx.files.internal("data/audio/door_close.wav"));
 		teleportSound = Gdx.audio.newSound(Gdx.files.internal("data/audio/teleport.wav"));
+		gameWon = Gdx.audio.newSound(Gdx.files.internal("data/audio/game_won.wav"));
+		rotate = Gdx.audio.newSound(Gdx.files.internal("data/audio/rotate.wav"));
 		
 		letters = splitAndGet(spritesheet, 8, 8, 0, 30, 26, 1);
 		digits  = splitAndGet(spritesheet, 8, 8, 0, 31, 10, 1);
